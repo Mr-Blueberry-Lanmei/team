@@ -1,7 +1,5 @@
 <template>
-    <view>
-      <view class="iconfont icon-gengduo"></view>
-    </view>
+    <view>动态</view>
 </template>
 
 <script lang="ts" setup>
