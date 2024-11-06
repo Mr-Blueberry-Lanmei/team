@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue" 
+import { ref,computed } from "vue" 
 import {getBanner} from '../../servers/servers'
 import type{bannersitem} from '../../servers/type'
 
@@ -23,13 +23,28 @@ const banners = ref<bannersitem[]>([])
 const autoplay = ref(true)
 const interval = ref(3000)
 const circular = ref(true)
+const time = ref(new Date())
+
+console.log(time.value)
+const update = () => {
+  time.value = new Date()
+  console.log(time.value)
+}
+setInterval(update, 1000)
+
 const tip = computed(() => {
-  const time = new Date()
-  const hour = time.getHours()
-  if(hour>=0 && hour < 9) return '早上好'
-  if(hour>=9 && hour < 14) return '中午好'
-  if(hour>=14 && hour < 24) return '晚上好'
+  const hour = time.value.getHours()
+  if(hour > 0 && hour < 9) {
+    return '早上好'
+  } else if(hour >= 9 && hour < 14) {
+    return '中午好'
+  } else if(hour >= 14 && hour < 18) {
+    return '下午好'
+  }else{
+    return '晚上好'
+  } 
 })
+
 
 
 getBanner().then(res => banners.value = res.data.banners)
