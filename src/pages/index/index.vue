@@ -1,11 +1,12 @@
 <template>
     <view>
-      <view class="iconfont icon-gengduo"></view>
+      <view class="iconfont icon-gengduo">123</view>
     </view>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue" 
+
 
 </script>
 

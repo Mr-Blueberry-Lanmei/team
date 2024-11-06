@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
-
-=======
     <view>我的</view>
->>>>>>> zzq
 </template>
 
 <script lang="ts" setup>
