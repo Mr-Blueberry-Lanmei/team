@@ -10,9 +10,12 @@
 			"path": "pages/discover/discover"
 		},
 		{
+			"path": "pages/login/login"
+		},
+		{
 			"path": "pages/dynamic/dynamic",
 			"style":{
-				"navigationBarTitleText":"动态"
+				"navigationStyle":"custom"
 			}
 		}
 	],
