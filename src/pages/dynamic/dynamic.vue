@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
-
-=======
-    <view>我的</view>
->>>>>>> zzq
+    <view>动态</view>
 </template>
 
 <script lang="ts" setup>
