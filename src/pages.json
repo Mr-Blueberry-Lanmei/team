@@ -10,7 +10,10 @@
 			"path": "pages/discover/discover"
 		},
 		{
-			"path": "pages/dynamic/dynamic"
+			"path": "pages/dynamic/dynamic",
+			"style":{
+				"navigationBarTitleText":"动态"
+			}
 		}
 	],
 	"tabBar": {
