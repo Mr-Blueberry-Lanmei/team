@@ -1,10 +1,10 @@
 <template>
-    <view>发现</view>
+  <view>登录</view>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue" 
-console.log("测试")
+
 </script>
 
 <style lang="scss" scoped>
