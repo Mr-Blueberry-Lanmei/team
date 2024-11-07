@@ -22,7 +22,7 @@ export const loginStatusApi = () => request<responseItem>({url: '/login/status'}
 export const qrKeyApi = () => request<responseItem>({url: `/login/qr/key?timestamp=${Date.now()}`})
 
 // 生成二维码
-export const qrCreateApi = (data:dataIt) => request<responseItem>({url: `/login/qr/create?timestamp=${Date.now()}`, data})
+export const qrCreateApi = (data:dataIt) => request<responseItem>({url: `/login/qr/create?timestamp=${Date.now()}&qrimg=true`, data})
 
 // 二维码检测扫码状态接口
 export const qrCheckApi = (data:dataIt) => request<responseItem>({url: `/login/qr/check?timestamp=${Date.now()}`, data})
