@@ -15,7 +15,7 @@ let timer = ref(null)
 const getQR = async () => {
   // 获取key
   const keyRes = await qrKeyApi()
-  // console.log(keyRes.data)
+  // console.log(keyRes.data.data.unikey)
   unikey.value = keyRes.data.data.unikey
   // 创建二维码
   const qrRes = await qrCreateApi(unikey.value)
@@ -33,7 +33,9 @@ const qrCheck = () => {
   }
   const checkQRStatus = async () => {
     try {
-      const res = await qrCheckApi(unikey.value)
+      console.log(unikey.value);
+      
+      const res = await qrCheckApi({key:unikey.value})
       // console.log(res)
       qrCode.value = res.data.code
       if (res.data.code === 800) {
