@@ -13,11 +13,12 @@ export interface responseItem {
   message?: string;
   data:AnyObject;
   playlist?: playlist;
+  banners:bannersitem[];
 }
 export interface eventItem {
   data?: dataitem[];
-  banners:bannersitem[],
-  list?: listIten[],
+  banners:bannersitem[];
+  list?: listIten[];
   recommend?: Recommenditem[];
   playlists?: playlistsitem[];
   privileges?: any;
