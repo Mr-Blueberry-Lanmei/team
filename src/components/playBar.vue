@@ -67,7 +67,7 @@ const add =() => {
 }
 const go = () => {
     uni.navigateTo({
-        url:'/pages/player/player?ids='+ ids.value,
+        url:`/pages/player/player?ids=${Store.detailId}`
     })
 }
 
