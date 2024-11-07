@@ -9,10 +9,10 @@ export interface Item {
 export interface responseItem {
   list: any[];
   playlists: any;
-  forEach(arg0: (obj: any) => void): unknown;
   code: number;
   message?: string;
   data:AnyObject;
+  playlist?: playlist;
 }
 export interface eventItem {
   data?: dataitem[];
@@ -21,7 +21,7 @@ export interface eventItem {
   recommend?: Recommenditem[];
   playlists?: playlistsitem[];
   privileges?: any;
-  playlist?: playlist
+  playlist?: playlist;
 }
   
 interface dataitem {
