@@ -7,6 +7,9 @@ export interface Item {
 }
 
 export interface responseItem {
+  list: any[];
+  playlists: any;
+  forEach(arg0: (obj: any) => void): unknown;
   code: number;
   message?: string;
   data?: dataitem[];
