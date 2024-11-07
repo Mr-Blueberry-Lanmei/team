@@ -14,7 +14,16 @@ export interface responseItem {
   data:AnyObject;
   playlist?: playlist;
   banners:bannersitem[];
-  songs: any;
+  songs: songsitem[];
+}
+export interface songsitem {
+  name: string;
+  id: number;
+  al: aliten;
+}
+interface aliten {
+  id: number;
+  picUrl: string
 }
 export interface eventItem {
   data?: dataitem[];
