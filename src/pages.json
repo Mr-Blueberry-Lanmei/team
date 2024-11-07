@@ -14,8 +14,13 @@
 		},
 		{
 			"path": "pages/login/login",
+<<<<<<< HEAD
+			"style":{
+				"navigationStyle":"custom"
+=======
 			"style": {
 				"navigationStyle": "custom"
+>>>>>>> c14c09f6e275b65065c7f0f1947d69ddf3ea92e4
 			}
 		},
 		{

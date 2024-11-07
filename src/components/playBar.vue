@@ -1,43 +1,55 @@
 <template>
-        <view class="playBar" @click="go" :style="{bottom: `${bottom}px`}">
+        <view class="playBar"  :style="{bottom: `${bottom}px`}">
             <view class="left">
                 <view>
-                    <image></image>
+                    <image :src="Store.song.al.picUrl" @click="go" mode="widthFix"></image>
                 </view>
-                <text>{{ song![0].name }}</text>
+                <text>{{Store.song.name}}</text>
             </view>
             <view class="right">
-                <image src="../static/icon-play.png" class="play"></image>
+                <image v-if="!Store.flag" src="../static/icon-play.png" class="play" @tap="Store.add"></image>
+                <image v-else src="../static/zanting.png" class="play" @tap="Store.add"></image>
                 <image src="../static/playlist.png" class="list"></image>
             </view>
         </view>
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue'
-import { getSongAPI,getSongUrlAPI } from '@/servers/servers'
+import { watch} from 'vue'
+import { getSongAPI, playsong } from '@/servers/servers'
+import {useCounterStore} from '@/store/store'
 
+
+const Store = useCounterStore()
 const props = defineProps(['bottom'])
-const ids = ref(347231)
-const data = { ids:ids.value }
-const song = ref<AnyObject>()
-const getSong = async() => {
+
+watch(() => Store.detailId, () =>{
+    if(Store.detailId > 0){
+        getSong(Store.detailId)
+        playsong({id: Store.detailId}).then(res => {
+            Store.mp3 = res.data.data[0].url
+            console.log(Store.mp3,res.data.data[0].url)
+        })
+    }
+},{immediate: true})
+
+
+
+const getSong = async(id: number) => {
     try{
-        const res = await getSongAPI(data)
-        const url = await getSongUrlAPI({id:ids.value})
-        console.log(res.data,url.data)
-        song.value = res.data.songs
+        const res = await getSongAPI({ids: id})
+        Store.song = res.data.songs[0]
     } catch(e){
         console.log(e)
     }
 }
-getSong()
-console.log(ids.value)
+
 const go = () => {
     uni.navigateTo({
-        url:'/pages/player/player?ids='+ ids.value,
+        url:`/pages/player/player?ids=${Store.detailId}`
     })
 }
+
 </script>
 
 <style lang='scss' scoped>
@@ -84,4 +96,4 @@ image{
     width:35px;
 }
 
-</style>
+</style> 
