@@ -5,16 +5,7 @@
       <view>{{ v.name }}</view>
     </view>
   </view>
-  <video
-      class="video-player"
-      :src="mp3"
-      controls
-      autoplay
-      loop
-      muted
-      show-center-play-btn
-      object-fit="cover"
-    ></video>
+  <playBar :bottom="bottom"/>
 </template>
 
 <script lang="ts" setup>
@@ -22,11 +13,13 @@ import { ref } from "vue"
 import { onLoad } from '@dcloudio/uni-app'
 import {getplaylist, playsong} from '../../servers/servers'
 import type{playlist} from '../../servers/type'
+import playBar from "@/components/playBar.vue"
 
 const list = ref<playlist>({} as playlist)
 const innerAudioContext = uni.createInnerAudioContext()
 const id = ref(0)
 const mp3 = ref('')
+const bottom = ref(0)
 
 onLoad((Option) => {
   const ids = Option!.id *1

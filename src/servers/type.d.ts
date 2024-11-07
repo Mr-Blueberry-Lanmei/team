@@ -7,16 +7,25 @@ export interface Item {
 }
 
 export interface responseItem {
+  list: any[];
+  playlists: any;
   code: number;
   message?: string;
+  data:AnyObject;
+  playlist?: playlist;
+  banners:bannersitem[];
+  songs: any;
+}
+export interface eventItem {
   data?: dataitem[];
-  banners:bannersitem[],
-  list?: listIten[],
+  banners:bannersitem[];
+  list?: listIten[];
   recommend?: Recommenditem[];
   playlists?: playlistsitem[];
   privileges?: any;
-  playlist?: playlist
+  playlist?: playlist;
 }
+  
 interface dataitem {
   id: number;
   url: string;

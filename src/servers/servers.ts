@@ -1,5 +1,6 @@
 import request from "./request"
-import type{responseItem} from './type'
+import type{responseItem,eventItem} from './type'
+
 import type{dataIt} from './type'
 
 
@@ -9,6 +10,14 @@ export const getlogin = (data: dataIt) => request<responseItem>({url: '/login/ce
 // 轮播图
 export const getBanner = () => request<responseItem>({url: '/banner'})
 
+//热门话题动态
+export const getDynamicAPI = () => request<responseItem>({url:'/topic/detail/event/hot?actid=111551188'})
+
+export const getData = () => request<responseItem>({url:'/playmode/intelligence/list'})
+
+export const getSongAPI = (data:any)=>request<responseItem>({url:'/song/detail', data})
+
+export const getSongUrlAPI = (data:any)=>request<responseItem>({url:'/song/url', data})
 // 获取验证码
 export const captchaSentApi = (data:dataIt) => request<responseItem>({url: `/captcha/sent?timestamp=${Date.now()}`, data})
 
@@ -52,3 +61,17 @@ export const getplaylist = (data: dataIt) => request<responseItem>({url: '/playl
 
 // 歌曲播放
 export const playsong = (data: dataIt) => request<responseItem>({url: '/song/url', data})
+// 歌曲分类
+export const getClassify = (data: dataIt)=>request<responseItem>({url:'/top/playlist',data});
+
+// 推荐歌单
+export const getSongList = (data: dataIt)=>request<responseItem>({url:'/personalized',data});
+
+// 最新歌曲
+export const getNewSong = (data: dataIt)=>request<responseItem>({url:'/top/song',data});
+
+// 所有榜单内容摘要
+export const getRankList = ()=>request<responseItem>({url:'/toplist/detail'});
+
+// 所有榜单
+export const getAllRankList = ()=>request<responseItem>({url:'/toplist'});
