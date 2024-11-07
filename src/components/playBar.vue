@@ -2,41 +2,35 @@
         <view class="playBar"  :style="{bottom: `${bottom}px`}">
             <view class="left">
                 <view>
-                    <image :src="song.al?.picUrl" @click="go" mode="widthFix"></image>
+                    <image :src="Store.song.al.picUrl" @click="go" mode="widthFix"></image>
                 </view>
-                <text>{{song.name}}</text>
+                <text>{{Store.song.name}}</text>
             </view>
             <view class="right">
-                <image v-if="!flag" src="../static/icon-play.png" class="play" @tap="add"></image>
-                <image v-else src="../static/zanting.png" class="play" @tap="add"></image>
+                <image v-if="!Store.flag" src="../static/icon-play.png" class="play" @tap="Store.add"></image>
+                <image v-else src="../static/zanting.png" class="play" @tap="Store.add"></image>
                 <image src="../static/playlist.png" class="list"></image>
             </view>
         </view>
 </template>
 
 <script setup lang='ts'>
-import { ref , watch} from 'vue'
+import { watch} from 'vue'
 import { getSongAPI, playsong } from '@/servers/servers'
 import {useCounterStore} from '@/store/store'
-import type{songsitem} from '@/servers/type'
 
 
-const innerAudioContext = uni.createInnerAudioContext()
 const Store = useCounterStore()
 const props = defineProps(['bottom'])
-const song = ref<songsitem>( {} as songsitem)
-const mp3 = ref('')
-const flag = ref(false)
 
 watch(() => Store.detailId, () =>{
     if(Store.detailId > 0){
+        console.log(Store.detailId)
         getSong(Store.detailId)
         playsong({id: Store.detailId}).then(res => {
-            mp3.value = res.data.data[0].url
-            console.log(mp3.value)
+            Store.mp3 = res.data.data[0].url
+            console.log(Store.mp3)
         })
-        innerAudioContext.autoplay = true   
-        innerAudioContext.src = mp3.value
     }
 },{immediate: true})
 
@@ -45,21 +39,13 @@ watch(() => Store.detailId, () =>{
 const getSong = async(id: number) => {
     try{
         const res = await getSongAPI({ids: id})
-        song.value = res.data.songs[0]
+        Store.song = res.data.songs[0]
+        console.log(Store.song)
     } catch(e){
         console.log(e)
     }
 }
-innerAudioContext.onPlay(() => flag.value = true)
-innerAudioContext.onPause(() => flag.value = false)
 
-const add =() => {
-    if(flag.value){
-        innerAudioContext.pause()
-    } else {
-        innerAudioContext.play()
-    }
-}
 const go = () => {
     uni.navigateTo({
         url:`/pages/player/player?ids=${Store.detailId}`
