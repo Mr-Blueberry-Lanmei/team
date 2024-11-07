@@ -1,17 +1,26 @@
 <template>
     <view class="header">
         <image src="../../static/icon-list.png"></image>
-        <view class="tab">
-            <text>关注</text>
-            <text>推荐</text>
+        <view class="tab" v-for="(item,i) in titList" :key="item">
+            <text @click="index = i">{{ item }}</text>
         </view>
         <image src="../../static/icon-add.png"></image>
     </view>
-    
-    <playBar />
+    <component :is="model[index]"></component>
+    <playBar :bottom="50"/>
 </template>
 
 <script lang="ts" setup>
+import playBar from '@/components/playBar.vue'
+import follow from './component/follow.vue'
+import remmcond from './component/remmcond.vue'
+import { ref } from 'vue'
+
+const index = ref(0)
+const model = ref([follow, remmcond])
+const titList=ref(["关注","推荐"])
+
+
 //触底加载新数据函数
 // onReachBottom(()=>{
 

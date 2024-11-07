@@ -14,6 +14,7 @@ export const getDynamicAPI = () => request<responseItem>({url:'/topic/detail/eve
 
 export const getData = () => request<responseItem>({url:'/playmode/intelligence/list'})
 
+//歌曲详情
 export const getSongAPI = (data:any)=>request<responseItem>({url:'/song/detail', data})
 
 

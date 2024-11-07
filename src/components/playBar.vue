@@ -19,7 +19,6 @@ import { getSongAPI, playsong } from '@/servers/servers'
 import {useCounterStore} from '@/store/store'
 import type{songsitem} from '@/servers/type'
 
-
 const innerAudioContext = uni.createInnerAudioContext()
 const Store = useCounterStore()
 const props = defineProps(['bottom'])
@@ -93,7 +92,7 @@ const go = () => {
         background: url('../static/disc.png') no-repeat;
         background-size: 40px 40px;
         text{
-            margin-left:20rpx;
+            margin-left:40rpx;
             font-size:14px;
         }
     }
