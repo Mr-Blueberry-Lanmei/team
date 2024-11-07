@@ -66,7 +66,7 @@ const qrCheck = () => {
       console.log('检测二维码状态失败', error)
     }
   }
-  timer = setInterval(checkQRStatus, 2000)
+  timer = setInterval(checkQRStatus, 10000)
 }
 
 watch(unikey, (newVal, oldVal) => {
