@@ -10,10 +10,16 @@
 			"path": "pages/discover/discover"
 		},
 		{
-			"path": "pages/dynamic/dynamic"
+			"path": "pages/login/login"
 		},
 		{
-			"path": "pages/login/login"
+			"path": "pages/dynamic/dynamic",
+			"style":{
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path":"pages/player/player"
 		},
 		{
 			"path": "pages/detail/detail"

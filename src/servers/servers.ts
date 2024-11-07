@@ -1,5 +1,6 @@
 import request from "./request"
-import type{responseItem} from './type'
+import type{responseItem,eventItem} from './type'
+
 import type{dataIt} from './type'
 
 // 登录
@@ -8,6 +9,14 @@ export const getlogin = (data: dataIt) => request<responseItem>({url: '/login/ce
 // 轮播图
 export const getBanner = () => request<responseItem>({url: '/banner'})
 
+//热门话题动态
+export const getDynamicAPI = () => request<responseItem>({url:'/topic/detail/event/hot?actid=111551188'})
+
+export const getData = () => request<responseItem>({url:'/playmode/intelligence/list'})
+
+export const getSongAPI = (data:any)=>request<responseItem>({url:'/song/detail', data})
+
+export const getSongUrlAPI = (data:any)=>request<responseItem>({url:'/song/url', data})
 // 热歌榜
 export const getdefault = () => request<responseItem>({url: '/toplist/detail'})
 

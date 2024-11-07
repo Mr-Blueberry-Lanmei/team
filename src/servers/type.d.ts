@@ -9,6 +9,9 @@ export interface Item {
 export interface responseItem {
   code: number;
   message?: string;
+  data:AnyObject;
+}
+export interface eventItem {
   data?: dataitem[];
   banners:bannersitem[],
   list?: listIten[],
@@ -17,6 +20,7 @@ export interface responseItem {
   privileges?: any;
   playlist?: playlist
 }
+  
 interface dataitem {
   id: number;
   url: string;
