@@ -7,7 +7,10 @@
 			"path": "pages/mine/mine"
 		},
 		{
-			"path": "pages/discover/discover"
+			"path": "pages/discover/discover",
+			"style":{
+				"navigationStyle":"custom"
+			}
 		},
 		{
 			"path": "pages/dynamic/dynamic"
