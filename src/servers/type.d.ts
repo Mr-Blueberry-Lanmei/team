@@ -4,12 +4,6 @@ export interface Item {
   method?: "GET" | "POST" | "PUT" | "DELETE"
 }
 
-interface event {
-  json:string;
-  info:AnyObject;
-  user:AnyObject;
-}
-
 export interface responseItem {
   code: number;
   message?: string;

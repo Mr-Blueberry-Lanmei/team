@@ -17,6 +17,9 @@
 			"style":{
 				"navigationStyle":"custom"
 			}
+		},
+		{
+			"path":"pages/player/player"
 		}
 	],
 	"tabBar": {
