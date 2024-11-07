@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "993873",
+      "name": "语音",
+      "font_class": "yuyin",
+      "unicode": "e6e1",
+      "unicode_decimal": 59105
+    }
+  ]
+}

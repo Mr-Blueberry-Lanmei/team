@@ -13,10 +13,13 @@
 			"path": "pages/dynamic/dynamic"
 		},
 		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationStyle": "custom"
-			}
+			"path": "pages/login/login"
+		},
+		{
+			"path": "pages/detail/detail"
+		},
+		{
+			"path": "pages/songdetail/songdetail"
 		}
 	],
 	"tabBar": {
@@ -32,7 +35,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "网易云小程序",
-		"navigationBarBackgroundColor": "#e20214",
+		"navigationBarBackgroundColor": "#346766",
 		"backgroundColor": "#F8F8F8"
 	}
 }

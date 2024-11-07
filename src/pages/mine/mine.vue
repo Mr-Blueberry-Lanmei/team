@@ -6,7 +6,7 @@
   </view>
   <view v-else>
     <view class="header">
-      <image class="avater" src="../../static/logo.png"></image>
+      <image class="avater" src="../../static/wangyiyun.png"></image>
       <view class="nickname">Lanmei</view>
       <view class="test">
         <view class="test-tag">
@@ -51,7 +51,7 @@ watchEffect(async () => {
 <style lang="scss" scoped>
 .header {
   height: 450rpx;
-  background-image: url(../../static/logo.png);
+  background-image: url(../../static/wangyiyun.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
