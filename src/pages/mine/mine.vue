@@ -1,7 +1,7 @@
 <template>
-  <view v-if="false">
+  <view v-if="true">
     <navigator url="/pages/login/login">
-        <button>去登录</button>
+      <button>去登录</button>
     </navigator>
   </view>
   <view v-else>
@@ -27,7 +27,24 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue" 
+import { ref, watchEffect } from "vue" 
+import { useUserStore } from "@/store/user"
+import { userPlaylistApi } from "@/servers/servers"
+
+const user = useUserStore()
+const playlist = ref([])
+
+watchEffect(async () => {
+  if (user.account?.id) {
+    const res = await userPlaylistApi(user.account.id)
+    playlist.value = res.data.data.playlist
+  }
+})
+
+// const goList = id => {
+  
+// }
+
 
 </script>
 
@@ -49,12 +66,25 @@ import { ref } from "vue"
   margin: 0rpx auto 20rpx;
 }
 .nickname {
+  margin-top: 40rpx;
   text-align: center;
   color: white;
   font-weight: 700;
 }
 .test {
+  margin-top: 60rpx;
   display: flex;
   justify-content: center;
+  color: #cfc4c4;
+  font-size: 14px;
+  padding: 20rpx 0;
+  .test-tag {
+    margin: 0 20rpx;
+    .bold {
+      font-weight: 700;
+      margin-right: 10rpx;
+      color: white;
+    }
+  }
 }
 </style>
