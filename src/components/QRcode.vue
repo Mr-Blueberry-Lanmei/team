@@ -63,7 +63,7 @@ const qrCheck = () => {
         }, 1000)
       }
     } catch (error) {
-      // console.log('检测二维码状态失败', error)
+      console.log('检测二维码状态失败', error)
     }
   }
   timer = setInterval(checkQRStatus, 2000)

@@ -19,8 +19,8 @@
  
 <script lang="ts" setup>
 import { ref, watch } from "vue"
-import Phone from "./components/Phone.vue"
-import QRcode from "./components/QRcode.vue"
+import Phone from "@/components/Phone.vue"
+import QRcode from "@/components/QRcode.vue"
 
 const loginType = ref('phone')
 const typeArr = [
