@@ -7,7 +7,8 @@
                 <text>{{song.name}}</text>
             </view>
             <view class="right">
-                <image src="../static/icon-play.png" class="play" @tap="add"></image>
+                <image v-if="!flag" src="../static/icon-play.png" class="play" @tap="add"></image>
+                <image v-else src="../static/zanting.png" class="play" @tap="add"></image>
                 <image src="../static/playlist.png" class="list"></image>
             </view>
         </view>
