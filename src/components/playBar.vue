@@ -49,14 +49,8 @@ const getSong = async(id: number) => {
         console.log(e)
     }
 }
-innerAudioContext.onPlay(() => {
-    console.log('kaishi')
-  flag.value = true
-})
-innerAudioContext.onPause(() => {
-    console.log('ijeshu')
-  flag.value = false
-})
+innerAudioContext.onPlay(() => flag.value = true)
+innerAudioContext.onPause(() => flag.value = false)
 
 const add =() => {
     if(flag.value){
