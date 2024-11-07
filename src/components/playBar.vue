@@ -1,10 +1,10 @@
 <template>
-        <view class="playBar" @click="go">
+        <view class="playBar" @click="go" :style="{bottom: `${bottom}px`}">
             <view class="left">
                 <view>
                     <image></image>
                 </view>
-                <text>{{ song[0].name }}</text>
+                <text>{{ song![0].name }}</text>
             </view>
             <view class="right">
                 <image src="../static/icon-play.png" class="play"></image>
@@ -17,6 +17,7 @@
 import { ref } from 'vue'
 import { getSongAPI,getSongUrlAPI } from '@/servers/servers'
 
+const props = defineProps(['bottom'])
 const ids = ref(347231)
 const data = { ids:ids.value }
 const song = ref<AnyObject>()
@@ -48,7 +49,6 @@ const go = () => {
     background:#fff;
     border-top:1px solid #ccc;
     position:fixed;
-    bottom:50px;
     z-index: 9;
     left:0; 
     justify-content: space-between;

@@ -14,6 +14,7 @@ export interface responseItem {
   data:AnyObject;
   playlist?: playlist;
   banners:bannersitem[];
+  songs: any;
 }
 export interface eventItem {
   data?: dataitem[];

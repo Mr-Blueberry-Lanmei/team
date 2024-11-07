@@ -1,5 +1,5 @@
 <template>
-   <Header/>
+   <Header :title="title"/>
    <Tip/>
    <Banner/>
    <List/>
@@ -7,11 +7,14 @@
 </template>
 
 <script lang="ts" setup>
+import {ref} from 'vue'
 import Banner from '@/components/banner.vue'
 import Header from '@/components/header.vue'
 import Tip from '@/components/tip.vue'
 import List from '@/components/list.vue'
 import Recommend from '@/components/recommend.vue'
+
+const title = ref('这是父组件的参数')
 
 </script>
 
