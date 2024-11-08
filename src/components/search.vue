@@ -4,6 +4,12 @@
       <input type="text" class="inp" :placeholder="tip" v-model="search">
       <view class="tip" @tap="acc">搜索</view>
   </view>
+  <view class="his">
+    <view>历史记录：</view>
+    <view class="deat">
+      <view v-for="v in history.history" :key="v" class="item">{{ v }}</view>
+    </view>
+  </view>
 </template>
 
 <script lang="ts" setup>
@@ -11,8 +17,10 @@ import Search from "@/pages/search/search.vue";
 import { ref } from "vue" 
 import {getsearch, getseadeta} from '@/servers/servers'
 import type{hostitem} from '@/servers/type'
+import {useHistoryStory} from '@/store/history'
 
 const add = () => uni.navigateBack({delta: 1})
+const history = useHistoryStory()
 const tips = ref<hostitem[]>([])
 const tip = ref('')
 const search = ref('')
@@ -61,6 +69,21 @@ tipfunct()
   .tip{
     font-size: 14px;
     width: 100rpx;
+  }
+}
+.his{
+  width: 100%;
+  padding: 20rpx 40rpx;
+}
+.deat{
+  margin-top: 20rpx;
+  display: flex;
+  padding: 0 40rpx;
+  .item{
+    color: #808080; 
+    &:not(:first-child){
+      margin-left: 20rpx;
+    }
   }
 }
 </style>
