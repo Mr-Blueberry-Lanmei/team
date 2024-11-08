@@ -8,7 +8,7 @@ export const useCounterStore = defineStore('counter',() => {
 	const detailId = ref(488388942)
   const flag = ref(false)
   const innerAudioContext = uni.createInnerAudioContext()
-
+  // jianli1
   const song = ref({
     name: '願い～あの頃のキミへ～',
     al:{
