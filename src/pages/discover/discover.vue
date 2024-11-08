@@ -22,7 +22,6 @@ const titList=ref(["音乐","博客","听书","直播"]);
 
 </template>
 
-
 <style scoped lang="scss">
 .tit{
     width: 100%;
