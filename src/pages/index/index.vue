@@ -1,23 +1,27 @@
 <template>
-   <Header :title="title"/>
+   <Header v-model="flag"/>
    <Tip/>
    <Banner/>
    <List/>
    <Recommend/>
    <playBar :bottom="bottom"/>
+   <center v-model="flag"/>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import {ref, watch} from 'vue'
 import Banner from '@/components/banner.vue'
 import Header from '@/components/header.vue'
 import Tip from '@/components/tip.vue'
 import List from '@/components/list.vue'
 import Recommend from '@/components/recommend.vue'
 import playBar from '@/components/playBar.vue'
+import center from '@/components/center.vue'
 
-const title = ref('这是父组件的参数')
+
 const bottom = ref(50)
+const flag = ref(false) 
+watch(flag, () => console.log('改变',flag.value))
 
 </script>
 
@@ -30,4 +34,5 @@ html,body{
 .img{
   display: block;
 }
+
 </style>

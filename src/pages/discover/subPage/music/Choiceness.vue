@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue" 
 import { getBanner,getSongList,getNewSong} from "@/servers/servers"
+import Loading from "@/components/Loading.vue";
 
 // 当前轮播图数据
 const imgArr=ref([]);
@@ -8,7 +9,8 @@ const imgArr=ref([]);
 const songList=ref([]);
 // 新鲜速递
 const NewSong=ref([])
-
+// loading动画开关
+const flag=ref(true);
 try{
     // 当前轮播图数据
     getBanner( )
@@ -19,12 +21,12 @@ try{
     getSongList({limit:20})
     .then((obj)=>{
         songList.value=obj.data.result;
-        console.log(obj)
     })
     // 新鲜速递
     getNewSong({type:16})
     .then((obj)=>{
        NewSong.value=obj.data.data.slice(0,15);
+       flag.value=false;
     })
 }catch(error){
     console.log(error)
@@ -39,6 +41,7 @@ function goDetalisPage(id){
 <template>
 <!-- 音乐下的精选页 -->
     <view class="Choiceness">
+        <Loading v-if="flag"></Loading>
         <swiper class="banner" :autoplay="autoplay" :interval="interval" :circular="circular">
             <swiper-item v-for="(obj) in imgArr" :key="obj.encodeId">
                 <image :src="obj.imageUrl" mode="aspectFill"></image>
