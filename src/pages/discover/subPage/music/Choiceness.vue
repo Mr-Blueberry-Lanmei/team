@@ -30,7 +30,6 @@ try{
     console.log(error)
 } 
 function goDetalisPage(id){
-    console.log(id)
     uni.navigateTo({
 	url: `/pages/DetalisSongList/DetalisSongList?id=${id}`
     });

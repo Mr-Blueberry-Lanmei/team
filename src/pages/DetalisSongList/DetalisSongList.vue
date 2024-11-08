@@ -2,6 +2,9 @@
 import { onLoad  } from "@dcloudio/uni-app";
 import {ref} from "vue"
 import {getDetalisSongList} from "@/servers/servers"
+import playBar from "@/components/playBar.vue";
+import {useCounterStore} from "../../store/store"
+const store=useCounterStore();
 
 const songList=ref([]);//歌曲列表
 const ListObj=ref({})//歌曲列表信息
@@ -22,10 +25,16 @@ onLoad( async(option)=>{
 function backPage(){
     uni.navigateBack()
 }
+
+// 修改pinia库当前播放歌曲的id
+function changeStoreId(id){
+    store.detailId=id;
+}
 </script>
 
 <template>
     <view class="body">
+        <playBar bottom="0"></playBar>
         <view class="titBox">
             <view class="titBar">
                 <text style="width: 80rpx;text-align: left;font-size: 60rpx;" @click="backPage">&lt;</text>
@@ -53,7 +62,7 @@ function backPage(){
                 <text>播放全部</text>
                 <text style="color: darkgrey;font-size: 25rpx;font-weight: normal;vertical-align: middle;">(&nbsp;{{ songList.length }}&nbsp;)</text>
             </view>
-            <view v-for="(obj,idx) in songList" :key="idx" class="songItem">
+            <view v-for="(obj,idx) in songList" :key="idx" class="songItem" @click="changeStoreId(obj.id)">
                 <text>{{ idx+1 }}</text>
                 <view>
                     <view class="songItemTit">
@@ -63,10 +72,6 @@ function backPage(){
                     <view>
                         <text style="color: #ddb166;border: solid #ddb166 2rpx;font-size: 19rpx;font-weight: 600;padding: 0 3.5rpx;">超清母带</text>
                         <text style="color:#585858;margin-left: 10rpx;font-size: 23rpx;font-weight: 500;">{{ obj.ar[0].name }}</text>
-                    </view>
-                    
-                    <view>
-                        <!-- <image :src="obj.al.picUrl "></image> -->
                     </view>
                 </view>
             </view>
