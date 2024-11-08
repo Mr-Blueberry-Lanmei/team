@@ -3,11 +3,10 @@
 </script>
 
 <template>
- <!-- 我喜欢区域 -->
- <view class="bottom">
+  <view class="bottom">
     <view class="like">
       <view class="like1">
-          <view class="like-pic"><image src="" alt="" /></view>
+          <view class="like-pic"><image src="../static/喜欢.png" alt="" /></view>
           <view class="like-content">
             <view class="like-title">我喜欢的音乐</view>
             <view class="like-desc"><span>0首</span>~<span>0次播放</span></view>
@@ -15,10 +14,9 @@
       </view>
     </view>
 
-    <!-- 新建歌单 -->
     <view class="like">
       <view class="like1">
-          <view class="like-pic"><image src="" alt="" /></view>
+          <view class="like-pic"><image src="../static/新建任务.png" alt="" /></view>
           <view class="like-content">
             <view class="like-title">新建歌单</view>
           </view>
@@ -26,17 +24,15 @@
     </view>
 
 
-        <!-- 导入外部歌单 -->
     <view class="like">
       <view class="like1">
-          <view class="like-pic"><image src="" alt="" /></view>
+          <view class="like-pic"><image src="../static/导入.png" alt="" /></view>
           <view class="like-content">
             <view class="like-title">导入外部歌单</view>
           </view>
       </view>
     </view>
-
-</view>
+  </view>
 </template>
 
 <style lang="scss" scoped>

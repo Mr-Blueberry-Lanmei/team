@@ -85,3 +85,6 @@ export const getsearch = () => request<responseItem>({url: '/search/hot'})
 
 // 搜索
 export const getseadeta = (data: dataIt) => request<responseItem>({url: '/search',data})
+
+// 获取账号信息
+export const getAccountApi = (data:dataIt) => request<responseItem>({url: '/user/account', method: 'POST', data})

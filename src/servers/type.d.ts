@@ -18,8 +18,7 @@ export interface responseItem {
   result: {
     hots: hostitem[]; 
     songs:songsitem[];
-  }
-  events?:AnyObject;
+  },
   cookie: string
 }
 export interface songsitem {
@@ -57,7 +56,8 @@ interface dataitem {
   id: number;
   url: string;
   key: string;
-  limit: number
+  limit: number;
+  cookie: any
 }
 export interface playlist {
   name: string;
