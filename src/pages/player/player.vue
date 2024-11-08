@@ -18,9 +18,9 @@
 				<progress percent="0" stroke-width="3" backgroundColor="#999999" activeColor="#FFFFFF" />
 		</view>
         <view class="time">
-            <text class="curTime">0:00</text>
+            <text class="curTime">{{ store.curTime }}</text>
             <text>极高</text>
-            <text class="totleTime">3:15</text>
+            <text class="totleTime">{{ setTime(song[0].dt) }}</text>
         </view>
         <view class="menu">
             <image class="type" src="../../static/loops.png"></image>
@@ -47,6 +47,8 @@ import { getSongAPI } from '@/servers/servers'
 const id = ref()
 const song = ref()
 const store = useCounterStore()
+// const curTime =ref()
+console.log(store.curTime)
  
 const getSong = async() => {
     try {
@@ -59,6 +61,12 @@ const getSong = async() => {
     }
 }
 
+const setTime = (data:number) => {
+    const min=parseInt( data / 60000 )
+    const s=Math.ceil(data / 1000 % 60);
+    return `${min <= 9 ? "0" + min : min } : ${s <= 9 ? "0"+s : s}`
+}
+
 const back = ()=>{
     uni.navigateBack()
 }
@@ -69,6 +77,7 @@ onLoad((option:any) => {
     getSong()
 })
 console.log(song.value)
+console.log(store.curTime)
 
 </script>
 

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import {ref, watch} from 'vue'
+import {ref, watch,computed} from 'vue'
 import { getSongAPI, playsong } from '@/servers/servers'
 
 export const useCounterStore = defineStore('counter',() => {
@@ -16,6 +16,9 @@ export const useCounterStore = defineStore('counter',() => {
   })
   const mp3 = ref('http://m702.music.126.net/20241107230421/baa376d8079b17dca2d8af03ee3699ff/jd-musicrep-ts/af33/9198/549c/7e01c2806bb8f83111218fbd9dbd2f0a.mp3 ')
   
+  const curTime = ref(0)
+  // const percent = ref(0)
+
   innerAudioContext.autoplay = true 
   innerAudioContext.src = mp3.value
 
@@ -27,7 +30,13 @@ export const useCounterStore = defineStore('counter',() => {
   })
   watch(mp3, () => innerAudioContext.src = mp3.value )
 
-  innerAudioContext.onPlay(() => flag.value = true)
+  
+
+  innerAudioContext.onPlay(() => {
+    flag.value = true
+    curTime.value = innerAudioContext.currentTime
+    console.log(innerAudioContext.currentTime,innerAudioContext.duration)
+  })
   innerAudioContext.onPause(() => flag.value = false)
 
   const add =() => {
@@ -44,6 +53,7 @@ export const useCounterStore = defineStore('counter',() => {
     flag,
     song,
     mp3,
-    add
+    add,
+    curTime
   }
 });
