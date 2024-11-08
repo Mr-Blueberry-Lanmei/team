@@ -16,18 +16,37 @@ export const useCounterStore = defineStore('counter',() => {
   })
   const mp3 = ref('')
   
-  innerAudioContext.src = mp3.value
+  const curTime = ref('00:00')
+  const duration = ref('')
+  const parsent = ref(0)
 
   watch(detailId,() => {
-    console.log(111)
-    playsong({id: detailId.value}).then(res => {
-      mp3.value = res.data.data[0].url
-    })
+    getSongAPI({ids: detailId.value}).then(res => song.value = res.data.songs[0])
+    playsong({id: detailId.value}).then(res => mp3.value = res.data.data[0].url)
   },{immediate: true})
-  watch(mp3, () => innerAudioContext.src = mp3.value , {immediate: true})
 
-  innerAudioContext.onPlay(() => flag.value = true)
+  watch(mp3, () => innerAudioContext.src = mp3.value , {immediate: true})
+  
+  innerAudioContext.onCanplay(()=>{
+    const time = Number(innerAudioContext.duration.toFixed(0))
+    const min = Math.floor( time / 60) 
+    const second = time % 60
+    duration.value = (min >= 10 ? min : '0' + min ) + ':' + (second > 10 ? second : '0' + second )
+  })
+
+  innerAudioContext.onTimeUpdate(()=>{
+    const time = Number(innerAudioContext.currentTime.toFixed(0))
+    const min = Math.floor( time /60)
+    const second = time % 60
+    curTime.value = (min >= 10 ? min : '0' + min ) + ':' + (second >= 10 ? second : '0' + second)
+    parsent.value = Number((time / innerAudioContext.duration).toFixed(2)) * 100
+  })
+
+  innerAudioContext.onPlay(() => {
+    flag.value = true
+  })
   innerAudioContext.onPause(() => flag.value = false)
+
 
   const add =() => {
     if(flag.value){
@@ -43,6 +62,9 @@ export const useCounterStore = defineStore('counter',() => {
     flag,
     song,
     mp3,
-    add
+    add,
+    curTime,
+    parsent,
+    duration
   }
 });

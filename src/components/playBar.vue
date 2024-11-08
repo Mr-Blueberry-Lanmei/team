@@ -1,7 +1,7 @@
 <template>
         <view class="playBar"  :style="{bottom: `${bottom}px`}">
             <view class="left">
-                <view :style="{background:`url('${Store.song.al.picUrl}')`}">
+                <view :style="{background:`url('${Store.song.al.picUrl}') no-repeat center`,backgroundSize:'27px'}">
                     <image src="../static/disc.png" @click="go" mode="widthFix"></image>
                 </view>
                 <text>{{Store.song.name}}</text>
@@ -15,27 +15,10 @@
 </template>
 
 <script setup lang='ts'>
-import { watch} from 'vue'
-import { getSongAPI, playsong } from '@/servers/servers'
 import {useCounterStore} from '@/store/store'
 
 const Store = useCounterStore()
 const props = defineProps(['bottom'])
-
-watch(() => Store.detailId, () =>{
-    if(Store.detailId > 0){
-        getSong(Store.detailId)
-    }
-},{immediate: true})
-
-const getSong = async(id: number) => {
-    try{
-        const res = await getSongAPI({ids: id})
-        Store.song = res.data.songs[0]
-    } catch(e){
-        console.log(e)
-    }
-}
 
 const go = () => {
     uni.navigateTo({
@@ -66,7 +49,6 @@ const go = () => {
             width:40px;
             height:40px;
             border-radius:50%;
-            background-size: cover;
             overflow: hidden;
             image{
                 width:42px;

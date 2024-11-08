@@ -12,8 +12,8 @@
 
 <script lang="ts" setup>
 import playBar from '@/components/playBar.vue'
-import follow from './component/follow.vue'
-import remmcond from './component/remmcond.vue'
+import follow from '@/components/follow.vue'
+import remmcond from '@/components/remmcond.vue'
 import { ref } from 'vue'
 
 const index = ref(1)
