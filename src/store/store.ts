@@ -16,8 +16,9 @@ export const useCounterStore = defineStore('counter',() => {
   })
   const mp3 = ref('http://m702.music.126.net/20241107230421/baa376d8079b17dca2d8af03ee3699ff/jd-musicrep-ts/af33/9198/549c/7e01c2806bb8f83111218fbd9dbd2f0a.mp3 ')
   
-  const curTime = ref(0)
-  // const percent = ref(0)
+  const curTime = ref('00:00')
+  const duration = ref<string>()
+  const parsent = ref<number>()
 
   innerAudioContext.autoplay = true 
   innerAudioContext.src = mp3.value
@@ -28,16 +29,28 @@ export const useCounterStore = defineStore('counter',() => {
       mp3.value = res.data.data[0].url
     })
   })
-  watch(mp3, () => innerAudioContext.src = mp3.value )
 
-  
+  watch(mp3, () => innerAudioContext.src = mp3.value )
+  innerAudioContext.onCanplay(()=>{
+    var time = innerAudioContext.duration.toFixed(0)
+    var min = Math.floor( time / 60)
+    var second = time % 60
+    duration.value = (min >= 10 ? min : '0' + min ) + ':' + (second > 10 ? second : '0' + second )
+  })
+
+  innerAudioContext.onTimeUpdate(()=>{
+    const time = innerAudioContext.currentTime.toFixed(0)
+    const min = Math.floor( time /60)
+    const second = time % 60
+    curTime.value = (min >= 10 ? min : '0' + min ) + ':' + (second >= 10 ? second : '0' + second)
+    parsent.value = ((time / innerAudioContext.duration).toFixed(2))*100
+  })
 
   innerAudioContext.onPlay(() => {
     flag.value = true
-    curTime.value = innerAudioContext.currentTime
-    console.log(innerAudioContext.currentTime,innerAudioContext.duration)
   })
   innerAudioContext.onPause(() => flag.value = false)
+
 
   const add =() => {
     if(flag.value){
@@ -54,6 +67,8 @@ export const useCounterStore = defineStore('counter',() => {
     song,
     mp3,
     add,
-    curTime
+    curTime,
+    parsent,
+    duration
   }
 });
