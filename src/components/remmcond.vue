@@ -12,7 +12,9 @@
                         v-for="pic in item.pics" 
                         :key="pic.squareUrl" 
                         :src="pic.squareUrl"
+                        @click="url = pic.rectangleUrl;flag=true"
                     ></image>
+                    <bigImage v-if="flag" :url="url" v-model:flag="flag"/>
                 </view>
                 <view class="share" v-if="JSON.parse(item.json).song">
                     <image src="../static/play.png" class="icon" @click="add(JSON.parse(item.json).song.id)"></image>
@@ -40,8 +42,12 @@
 import { ref } from "vue" 
 import { useCounterStore } from "@/store/store"
 import { getDynamicAPI } from "@/servers/servers"
+import bigImage from "@/components/BigImage.vue"
+
 const list = ref<AnyObject>([])
 const store = useCounterStore()
+const url = ref()
+const flag = ref(false)
 
 const getDynamic = async() => {
     try {
@@ -55,8 +61,11 @@ const getDynamic = async() => {
 getDynamic()
 
 const add = (id:number) => {
-    console.log(111)
     store.detailId = id
+}
+
+const change = () => {
+
 }
 
 </script>
