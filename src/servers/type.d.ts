@@ -20,6 +20,7 @@ export interface responseItem {
     songs:songsitem[];
   }
   events?:AnyObject;
+  cookie: string
 }
 export interface songsitem {
   id: number;
@@ -55,6 +56,8 @@ export interface eventItem {
 interface dataitem {
   id: number;
   url: string;
+  key: string;
+  limit: number
 }
 export interface playlist {
   name: string;
@@ -100,9 +103,10 @@ export interface bannersitem {
 
 interface dataitem {
   id: number;
-  phone: number;
+  phone: string;
   password: number;
   keywords: string;
+  captcha: string
 }
 
 export type dataIt = Partial<dataitem>
