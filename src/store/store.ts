@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import {ref, watch,computed} from 'vue'
+import {ref, watch} from 'vue'
 import { getSongAPI, playsong } from '@/servers/servers'
 
 export const useCounterStore = defineStore('counter',() => {
@@ -17,28 +17,29 @@ export const useCounterStore = defineStore('counter',() => {
   const mp3 = ref('')
   
   const curTime = ref('00:00')
-  const duration = ref<string>()
-  const parsent = ref<number>()
+  const duration = ref('')
+  const parsent = ref(0)
 
   watch(detailId,() => {
     getSongAPI({ids: detailId.value}).then(res => song.value = res.data.songs[0])
     playsong({id: detailId.value}).then(res => mp3.value = res.data.data[0].url)
   },{immediate: true})
+
   watch(mp3, () => innerAudioContext.src = mp3.value , {immediate: true})
   
   innerAudioContext.onCanplay(()=>{
-    var time = innerAudioContext.duration.toFixed(0)
-    var min = Math.floor( time / 60)
-    var second = time % 60
+    const time = Number(innerAudioContext.duration.toFixed(0))
+    const min = Math.floor( time / 60) 
+    const second = time % 60
     duration.value = (min >= 10 ? min : '0' + min ) + ':' + (second > 10 ? second : '0' + second )
   })
 
   innerAudioContext.onTimeUpdate(()=>{
-    const time = innerAudioContext.currentTime.toFixed(0)
+    const time = Number(innerAudioContext.currentTime.toFixed(0))
     const min = Math.floor( time /60)
     const second = time % 60
     curTime.value = (min >= 10 ? min : '0' + min ) + ':' + (second >= 10 ? second : '0' + second)
-    parsent.value = ((time / innerAudioContext.duration).toFixed(2))*100
+    parsent.value = Number((time / innerAudioContext.duration).toFixed(2)) * 100
   })
 
   innerAudioContext.onPlay(() => {
