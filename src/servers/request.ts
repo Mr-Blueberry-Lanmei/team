@@ -1,7 +1,7 @@
 type response<t = AnyObject> = Omit<UniApp.RequestSuccessCallbackResult, 'data'> & {data: t}
 import type{Item} from './type'
 
-const baseurl = 'http://zyxcl.xyz/music/api'
+const baseurl = 'https://zyxcl.xyz/music/api'
 
 const request = <t>({ url , data= {}, method= "GET" }: Item) =>{
   return new Promise<response<t>>((resolve, reject) => {

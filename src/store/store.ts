@@ -14,7 +14,7 @@ export const useCounterStore = defineStore('counter',() => {
     picUrl:  "https://p1.music.126.net/TBJ9yAhUs8UKWGFWuIJgxw==/109951165946337053.jpg"
     }
   })
-  const mp3 = ref('http://m702.music.126.net/20241107230421/baa376d8079b17dca2d8af03ee3699ff/jd-musicrep-ts/af33/9198/549c/7e01c2806bb8f83111218fbd9dbd2f0a.mp3 ')
+  const mp3 = ref('')
   
   const curTime = ref('00:00')
   const duration = ref<string>()
@@ -29,8 +29,14 @@ export const useCounterStore = defineStore('counter',() => {
       mp3.value = res.data.data[0].url
     })
   })
+  innerAudioContext.src = mp3.value
 
-  watch(mp3, () => innerAudioContext.src = mp3.value )
+  watch(detailId,() => {
+    getSongAPI({ids: detailId.value}).then(res => song.value = res.data.songs[0])
+    playsong({id: detailId.value}).then(res => mp3.value = res.data.data[0].url)
+  },{immediate: true})
+  watch(mp3, () => innerAudioContext.src = mp3.value , {immediate: true})
+  
   innerAudioContext.onCanplay(()=>{
     var time = innerAudioContext.duration.toFixed(0)
     var min = Math.floor( time / 60)
