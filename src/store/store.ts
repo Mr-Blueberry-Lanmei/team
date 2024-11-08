@@ -38,6 +38,6 @@ export const useCounterStore = defineStore('counter',() => {
     flag,
     song,
     mp3,
-    add,
+    add
   }
 });

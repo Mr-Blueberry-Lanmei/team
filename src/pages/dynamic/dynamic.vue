@@ -1,8 +1,8 @@
 <template>
     <view class="header">
         <image src="../../static/icon-list.png"></image>
-        <view class="tab" v-for="(item,i) in titList" :key="item">
-            <text @click="index = i">{{ item }}</text>
+        <view class="tab" >
+            <text v-for="(item,i) in titList" :key="item" @click="index = i" :class="{active:index === i}">{{ item }}</text>
         </view>
         <image src="../../static/icon-add.png"></image>
     </view>
@@ -16,7 +16,7 @@ import follow from './component/follow.vue'
 import remmcond from './component/remmcond.vue'
 import { ref } from 'vue'
 
-const index = ref(0)
+const index = ref(1)
 const model = ref([follow, remmcond])
 const titList=ref(["关注","推荐"])
 
@@ -50,7 +50,11 @@ const titList=ref(["关注","推荐"])
         margin:0 10px;
         font-weight:bold;
         font-size: 18px;
+        color:#999;
     }
+}
+.active{
+    color: #333 !important;
 }
 
 </style>

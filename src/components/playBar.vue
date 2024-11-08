@@ -1,8 +1,8 @@
 <template>
         <view class="playBar"  :style="{bottom: `${bottom}px`}">
             <view class="left">
-                <view>
-                    <image :src="Store.song.al.picUrl" @click="go" mode="widthFix"></image>
+                <view :style="{background:`url('${Store.song.al.picUrl}')`}">
+                    <image src="../static/disc.png" @click="go" mode="widthFix"></image>
                 </view>
                 <text>{{Store.song.name}}</text>
             </view>
@@ -32,8 +32,6 @@ watch(() => Store.detailId, () =>{
         })
     }
 },{immediate: true})
-
-
 
 const getSong = async(id: number) => {
     try{
@@ -70,8 +68,18 @@ const go = () => {
     .left{
         display: flex;
         align-items: center;
-        background: url('../static/disc.png') no-repeat;
-        background-size: 40px 40px;
+        view{
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            background-size: cover;
+            overflow: hidden;
+            image{
+                width:42px;
+                height:42px;
+                margin:-1px 0 0 -1px;
+            }
+        }
         text{
             margin-left:40rpx;
             font-size:14px;
@@ -92,9 +100,6 @@ const go = () => {
     }
     
 }
-image{
-    height:35px;
-    width:35px;
-}
+
 
 </style> 
