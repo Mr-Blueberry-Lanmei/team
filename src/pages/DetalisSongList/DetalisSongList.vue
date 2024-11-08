@@ -4,10 +4,13 @@ import {ref} from "vue"
 import {getDetalisSongList} from "@/servers/servers"
 import playBar from "@/components/playBar.vue";
 import {useCounterStore} from "../../store/store"
+import Loading from "@/components/Loading.vue";
 const store=useCounterStore();
 
 const songList=ref([]);//歌曲列表
 const ListObj=ref({})//歌曲列表信息
+// loading动画开关
+const flag=ref(true);
 
 // 获取上个页面传递的参数
 onLoad( async(option)=>{
@@ -15,6 +18,7 @@ onLoad( async(option)=>{
        const obj= await getDetalisSongList({id:option.id});
        songList.value=obj.data.playlist.tracks
        ListObj.value=obj.data.playlist
+       flag.value=false;
        console.log(obj.data.playlist)
        console.log(obj.data.playlist.tracks)
     } catch (error) {
@@ -34,6 +38,7 @@ function changeStoreId(id){
 
 <template>
     <view class="body">
+        <Loading v-if="flag"></Loading>
         <playBar bottom="0"></playBar>
         <view class="titBox">
             <view class="titBar">
@@ -135,8 +140,11 @@ function changeStoreId(id){
     }
 }
 .titBar{
-    z-index: 1;
+    z-index: 999;
     color: #fff;
+    position: sticky;
+    top: 0;
+    left: 0;
     icon{
         position: absolute;
         right: 40rpx;

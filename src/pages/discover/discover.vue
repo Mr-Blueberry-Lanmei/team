@@ -5,7 +5,6 @@ import Blogger from "./subPage/Blogger.vue";
 import Live from "./subPage/Live.vue";
 import Book from "./subPage/Book.vue";
 
-
 //当前一级页面下标
 const index=ref(0);
 const model=ref([Music,Blogger,Live,Book])

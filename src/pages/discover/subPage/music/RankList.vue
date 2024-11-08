@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import {getRankList,getAllRankList} from "@/servers/servers"
 import RankListSquare from "../../../../components/RankListSquare.vue";
+import Loading from "@/components/Loading.vue";
 
 // 榜单推荐
 const recommend=ref([]);
@@ -17,12 +18,15 @@ const thirdList=ref([])
 const fourthList=ref([])
 // 特色榜
 const fifthList=ref([])
+// loading动画开关
+const flag=ref(true);
 
 try{
     // 所有榜单内容摘要
     getRankList()
     .then((obj)=>{
         rankList.value=obj.data.list.slice(0,6)
+        flag.value=false;
     })
     // 所有榜单
     getAllRankList()
@@ -43,6 +47,7 @@ try{
 
 <template>
     <view class="RankList">
+        <Loading v-if="flag"></Loading>
         <RankListSquare style="margin-top: 35rpx;" :data="recommend" tit="精选榜"></RankListSquare>
         <view class="logo">
             <view></view>
