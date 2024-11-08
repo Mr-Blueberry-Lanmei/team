@@ -7,6 +7,12 @@
 			"path": "pages/mine/mine"
 		},
 		{
+			"path": "pages/search/search",
+			"style":{
+				"navigationStyle":"custom"
+			}
+		},
+		{
 			"path": "pages/discover/discover",
 			"style":{
 				"navigationStyle":"custom"
@@ -14,8 +20,8 @@
 		},
 		{
 			"path": "pages/login/login",
-			"style":{
-				"navigationStyle":"custom"
+			"style": {
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -32,6 +38,9 @@
 		},
 		{
 			"path": "pages/songdetail/songdetail"
+		},
+		{
+			"path": "pages/searchsong/searchsong"
 		}
 	],
 	"tabBar": {
