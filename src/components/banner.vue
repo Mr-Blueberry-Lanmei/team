@@ -29,7 +29,6 @@ getBanner().then(res => banners.value = res.data.banners)
     width: 100%;
     height: 100%;
     height: 248rpx;
-    background: red;
     border-radius: 20rpx;
     overflow: hidden;
     .item{
