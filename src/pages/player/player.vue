@@ -1,6 +1,7 @@
 <template>
 <view class="player">
     <view class="title">
+        <image class="back" src="../../static/icon-right.png"></image>
         <text>每日推荐</text>
     </view>
     <view class="pic">
@@ -73,6 +74,17 @@ console.log(song.value)
         font-size:16px;
         color:#eee;
         text-align: center;
+        .back{
+            position: absolute;
+            top:15px;
+            left:25px;
+            width:30px;
+            height:30px;
+            z-index:9;
+            background:rgba(0,0,0,0.3);
+            border-radius: 50%;
+            transform: rotate(180deg);
+        }
     }
    .pic{
         width:250px;
