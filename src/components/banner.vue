@@ -6,20 +6,27 @@
         </swiper-item>
       </swiper>
     </view>
+    <login v-if="flag === false"/>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue" 
+import { ref, watch } from "vue" 
 import {getBanner} from '../servers/servers'
 import type{bannersitem} from '../servers/type'
+import login from '@/components/Loading.vue'
 
 const banners = ref<bannersitem[]>([])
 const autoplay = ref(true)
 const interval = ref(3000)
 const circular = ref(true)
+const flag = ref(false)
 
 getBanner().then(res => banners.value = res.data.banners)
-
+watch(banners,() =>{
+  if(banners.value.length >0){
+    flag.value = true
+  }
+})
 </script>
 
 <style lang="scss" scoped>

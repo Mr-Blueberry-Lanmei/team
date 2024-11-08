@@ -25,11 +25,11 @@ export const useCounterStore = defineStore('counter',() => {
   watch(detailId,() => {
     playsong({id: detailId.value}).then(res => mp3.value = res.data.data[0].url)
     getSongAPI({ids: detailId.value}).then(res => song.value = res.data.songs[0])
+    innerAudioContext.autoplay = true
   },{immediate: true})
 
   watch(mp3, () => {
-    innerAudioContext.src = mp3.value 
-    innerAudioContext.autoplay = true
+    innerAudioContext.src = mp3.value
     , {immediate: true}})
   
   innerAudioContext.onCanplay(()=>{
