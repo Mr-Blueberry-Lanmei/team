@@ -30,7 +30,7 @@ export const useCounterStore = defineStore('counter',() => {
 
   watch(mp3, () => {
     innerAudioContext.src = mp3.value
-    , {immediate: true}})
+    }, {immediate: true})
   
   innerAudioContext.onCanplay(()=>{
     const time = Number(innerAudioContext.duration.toFixed(0))
@@ -49,7 +49,6 @@ export const useCounterStore = defineStore('counter',() => {
 
   innerAudioContext.onPlay(() => {
     flag.value = true
-    innerAudioContext.autoplay = true
   })
   innerAudioContext.onPause(() => flag.value = false)
 
