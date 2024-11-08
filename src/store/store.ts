@@ -19,10 +19,8 @@ export const useCounterStore = defineStore('counter',() => {
   innerAudioContext.src = mp3.value
 
   watch(detailId,() => {
-    console.log(111)
-    playsong({id: detailId.value}).then(res => {
-      mp3.value = res.data.data[0].url
-    })
+    getSongAPI({ids: detailId.value}).then(res => song.value = res.data.songs[0])
+    playsong({id: detailId.value}).then(res => mp3.value = res.data.data[0].url)
   },{immediate: true})
   watch(mp3, () => innerAudioContext.src = mp3.value , {immediate: true})
 
