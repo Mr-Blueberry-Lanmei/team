@@ -37,7 +37,7 @@
 <script lang="ts" setup>
 import { ref } from "vue" 
 import { getDynamicAPI,getData } from "../../servers/servers"
-import playBar from "@/component/playBar.vue"
+import playBar from "@/components/playBar.vue"
 
 const list = ref<AnyObject>([])
 

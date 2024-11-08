@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import {getRankList,getAllRankList} from "@/servers/servers"
-import RankListSquare from "../../component/RankListSquare.vue";
+import RankListSquare from "../../../../components/RankListSquare.vue";
 
 // 榜单推荐
 const recommend=ref([]);
@@ -36,7 +36,7 @@ try{
         recommend.value=obj.data.list.slice(43,46)
     })
 }catch(error){
-    console.log(error)
+    console.log(error);
 }
 
 </script> 

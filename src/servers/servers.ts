@@ -62,16 +62,19 @@ export const getplaylist = (data: dataIt) => request<responseItem>({url: '/playl
 // 歌曲播放
 export const playsong = (data: dataIt) => request<responseItem>({url: '/song/url', data})
 // 歌曲分类
-export const getClassify = (data)=>request<responseItem>({url:'/top/playlist',data});
+export const getClassify = (data: dataIt)=>request<responseItem>({url:'/top/playlist',data});
 
 // 推荐歌单
-export const getSongList = (data)=>request<responseItem>({url:'/personalized',data});
+export const getSongList = (data: dataIt)=>request<responseItem>({url:'/personalized',data});
 
 // 最新歌曲
-export const getNewSong = (data)=>request<responseItem>({url:'/top/song',data});
+export const getNewSong = (data: dataIt)=>request<responseItem>({url:'/top/song',data});
 
 // 所有榜单内容摘要
 export const getRankList = ()=>request<responseItem>({url:'/toplist/detail'});
 
 // 所有榜单
 export const getAllRankList = ()=>request<responseItem>({url:'/toplist'});
+
+// 请求歌单详情
+export const getDetalisSongList = (data) =>request<responseItem>({url:'/playlist/detail',data})

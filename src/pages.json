@@ -29,6 +29,12 @@
 		},
 		{
 			"path": "pages/songdetail/songdetail"
+		},
+		{
+			"path":"pages/DetalisSongList/DetalisSongList",
+			"style":{
+				"navigationStyle":"custom"
+			}
 		}
 	],
 	"tabBar": {

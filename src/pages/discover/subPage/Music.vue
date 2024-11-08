@@ -3,7 +3,7 @@ import { ref } from "vue"
 import { getClassify } from "@/servers/servers"
 import Choiceness from "./music/Choiceness.vue"
 import RankList from "./music/RankList.vue";
-import NavigationTab from "../component/NavigationTab.vue";
+import NavigationTab from "../../../components/NavigationTab.vue";
 
 //当前页面二级下标
 const index=ref(0);
@@ -13,7 +13,7 @@ const model=ref([Choiceness,RankList]);
 const showBlo=ref(false)//导航栏窗口开关
 
 try{
-    getClassify({limit:10,order:"hot"})
+    getClassify({limit:6,order:"hot"})
     .then((obj)=>{
         obj.data.playlists.forEach((obj) => {
             obj.tags.forEach((str)=>{
@@ -28,7 +28,7 @@ try{
 
 <template>
     <view class="music">
-        <NavigationTab v-model:showBlo="showBlo" :tags="tags"></NavigationTab>
+        <NavigationTab v-model:showBlo="showBlo" v-model:index="index" :tags="tags"></NavigationTab>
         <view class="titBar">
             <view  @click="showBlo=!showBlo" class="DownArrow">
                 <view>&gt;</view>
@@ -75,7 +75,6 @@ try{
         text-align: center;
         >view{
             transform: rotateZ(90deg);
-            
         }
     }
     // 二级栏高亮
