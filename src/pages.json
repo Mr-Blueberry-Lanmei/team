@@ -31,7 +31,10 @@
 			}
 		},
 		{
-			"path":"pages/player/player"
+			"path":"pages/player/player",
+			"style":{
+				"navigationStyle":"custom"
+			}
 		},
 		{
 			"path": "pages/detail/detail"
