@@ -5,7 +5,7 @@
         <text>每日推荐</text>
     </view>
     <view class="box">
-        <image src="../../static/needle-ab.png" class="needle"></image>
+        <image src="../../static/needle-ab.png" :class="['needle',{start:!store.flag}]"></image>
         <view :class="['pic', {anim:store.flag}]">
             <image :src="song[0].al.picUrl" class="cover"></image>
         </view>
@@ -18,6 +18,7 @@
         </view>
         <view class="progress-box">
 			<progress :percent="store.parsent" stroke-width="3" backgroundColor="#999999" activeColor="#0000FF"/>
+            <!-- <view class="bar"  @click="change"></view> -->
 		</view>
         <view class="time">
             <text class="curTime">{{ store.curTime }}</text>
@@ -49,7 +50,6 @@ import { getSongAPI } from '@/servers/servers'
 const id = ref()
 const song = ref()
 const store = useCounterStore()
-console.log(store.duration)
  
 const getSong = async() => {
     try {
@@ -62,19 +62,19 @@ const getSong = async() => {
     }
 }
 
-
-
 const back = ()=>{
     uni.navigateBack()
 }
 
 onLoad((option:any) => {
     id.value = option.ids
-    console.log(option)
     getSong()
 })
 console.log(song.value)
-console.log(store.curTime)
+
+// const change = (event:any) => {
+//     console.log(event.target)
+// }
 
 </script>
 
@@ -116,6 +116,12 @@ console.log(store.curTime)
             width:140px;
             height:180px;
             z-index: 9;
+            transition: all 0.5s;
+        }
+        .start{
+            top:28px;
+            left:5px;
+            transform: rotate(50deg);
         }
     }
    .pic{
@@ -155,6 +161,16 @@ console.log(store.curTime)
         }
         .progress-box{
             margin-top:20px;
+            position:relative;
+            .bar{
+                width:10px;
+                height:10px;
+                border-radius:50%;
+                position:absolute;
+                top:-4px;
+                left:0;
+                background:red;
+            }
         }
         .time{
             display: flex;
