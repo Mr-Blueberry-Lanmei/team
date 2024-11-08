@@ -19,6 +19,7 @@ export interface responseItem {
     hots: hostitem[]; 
     songs:songsitem[];
   }
+  events?:AnyObject;
 }
 export interface songsitem {
   id: number;

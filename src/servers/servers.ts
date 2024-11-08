@@ -80,6 +80,7 @@ export const getAllRankList = ()=>request<responseItem>({url:'/toplist'});
 
 // 请求歌单详情
 export const getDetalisSongList = (data) =>request<responseItem>({url:'/playlist/detail',data})
+
 // 搜索关键字
 export const getsearch = () => request<responseItem>({url: '/search/hot'})
 
