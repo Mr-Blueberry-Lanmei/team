@@ -1,7 +1,7 @@
 <template>
 <view class="player">
     <view class="title">
-        <image class="back" src="../../static/icon-right.png"></image>
+        <image class="back" src="../../static/icon-right.png" @click="back"></image>
         <text>每日推荐</text>
     </view>
     <view class="pic">
@@ -9,9 +9,9 @@
         <image src="../../static/needle-ab.png" class="needle"></image>
     </view>
     <view class="del">
-        <text class="name">{{ song[0].name }}</text>
+        <text class="name">{{ store.song.name }}</text>
         <view class="ar">
-            <text>{{ song[0].ar.map(item => item.name).join('') }}</text>
+            <text>{{ song[0].ar.map((item:any) => item.name).join('') }}</text>
             <image src="../../static/icon-right.png"></image>
         </view>
         <view class="progress-box">
@@ -26,7 +26,8 @@
             <image class="type" src="../../static/loops.png"></image>
             <view class="btns">
                 <image class="prev" src="../../static/prev.png"></image>
-                <image class="play" src="../../static/play.png"></image>
+                <image class="play" v-if="!store.flag" src="../../static/play.png" @click="store.add"></image>
+                <image class="play" v-else src="../../static/stop.png" @click="store.add"></image>
                 <image class="next" src="../../static/next.png"></image>
             </view>
             <image class="playList" src="../../static/list.png"></image>
@@ -39,11 +40,13 @@
 </template>
 
 <script setup lang='ts'>
+import { useCounterStore } from '@/store/store'
 import { onLoad } from '@dcloudio/uni-app'
 import { ref } from 'vue'
 import { getSongAPI } from '@/servers/servers'
 const id = ref()
 const song = ref()
+const store = useCounterStore()
  
 const getSong = async() => {
     try {
@@ -54,6 +57,10 @@ const getSong = async() => {
     } catch (e){
         console.log(e)
     }
+}
+
+const back = ()=>{
+    uni.navigateBack()
 }
 
 onLoad((option:any) => {
