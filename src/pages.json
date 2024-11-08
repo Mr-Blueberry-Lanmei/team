@@ -4,7 +4,16 @@
 			"path": "pages/index/index"
 		},
 		{
-			"path": "pages/mine/mine"
+			"path": "pages/mine/mine",
+			"style":{
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style":{
+				"navigationStyle":"custom"
+			}
 		},
 		{
 			"path": "pages/discover/discover",
@@ -14,8 +23,8 @@
 		},
 		{
 			"path": "pages/login/login",
-			"style":{
-				"navigationStyle":"custom"
+			"style": {
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -25,13 +34,22 @@
 			}
 		},
 		{
-			"path":"pages/player/player"
+			"path":"pages/player/player",
+			"style":{
+				"navigationStyle":"custom"
+			}
 		},
 		{
 			"path": "pages/detail/detail"
 		},
 		{
-			"path": "pages/songdetail/songdetail"
+			"path":"pages/DetalisSongList/DetalisSongList",
+			"style":{
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/searchsong/searchsong"
 		}
 	],
 	"tabBar": {

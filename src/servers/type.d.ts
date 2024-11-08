@@ -15,6 +15,29 @@ export interface responseItem {
   playlist?: playlist;
   banners:bannersitem[];
   songs: songsitem[];
+  result: {
+    hots: hostitem[]; 
+    songs:songsitem[];
+  },
+  cookie: string;
+  level: number;
+  listenSongs: string;
+  createDays: number;
+  playlist: string;
+  account: any;
+  profile: any
+}
+export interface songsitem {
+  id: number;
+  name: string;
+  album:{
+    id: number;
+    name: string;
+  };
+  artists:tracks[]
+}
+export interface hostitem{
+  first: string;
 }
 export interface songsitem {
   name: string;
@@ -38,6 +61,9 @@ export interface eventItem {
 interface dataitem {
   id: number;
   url: string;
+  key: string;
+  limit: number;
+  cookie: any
 }
 export interface playlist {
   name: string;
@@ -83,8 +109,10 @@ export interface bannersitem {
 
 interface dataitem {
   id: number;
-  phone: number;
+  phone: string;
   password: number;
+  keywords: string;
+  captcha: string
 }
 
 export type dataIt = Partial<dataitem>

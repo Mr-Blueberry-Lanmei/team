@@ -70,7 +70,7 @@ const submit = async () => {
   buttonShow.value = false
   if (!phoneErrorMessage.value) {
     console.log('手机号验证通过:', phoneNumber.value)
-    const res = await captchaSentApi({phone: phoneNumber.value})
+    const res = await captchaSentApi({phone:phoneNumber.value})
     if (res.data.code === 200) {
       console.log('验证码发送成功')
     } else {

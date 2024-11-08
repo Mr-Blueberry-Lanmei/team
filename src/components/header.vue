@@ -1,13 +1,31 @@
 <template>
     <view class="header">
       <view class="iconfont icon-gengduo"></view>
-      <input type="text" class="inp">
+      <input type="text" class="inp" @focus="add" :placeholder="tip">
       <view class="iconfont icon-yuyin"></view>
     </view>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue" 
+import {getsearch} from '@/servers/servers'
+import type{hostitem} from '@/servers/type'
+
+const add =() => uni.navigateTo({url: "/pages/search/search"})
+const tips = ref<hostitem[]>([])
+const tip = ref('')
+
+getsearch().then(res => tips.value = res.data.result.hots)
+
+const tipfunct = () => {
+  let i = 0
+  const timer = setInterval(() => {
+    tip.value = tips.value[i].first
+    if(i >= tips.value.length - 1) return i = 0
+    i++
+  }, 2000)
+}
+tipfunct()
 
 </script>
 

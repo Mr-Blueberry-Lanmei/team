@@ -14,6 +14,7 @@ export const getDynamicAPI = () => request<responseItem>({url:'/topic/detail/eve
 
 export const getData = () => request<responseItem>({url:'/playmode/intelligence/list'})
 
+//歌曲详情
 export const getSongAPI = (data:any)=>request<responseItem>({url:'/song/detail', data})
 
 
@@ -76,3 +77,14 @@ export const getRankList = ()=>request<responseItem>({url:'/toplist/detail'});
 
 // 所有榜单
 export const getAllRankList = ()=>request<responseItem>({url:'/toplist'});
+
+// 请求歌单详情
+export const getDetalisSongList = (data:dataIt) =>request<responseItem>({url:'/playlist/detail',data})
+// 搜索关键字
+export const getsearch = () => request<responseItem>({url: '/search/hot'})
+
+// 搜索
+export const getseadeta = (data: dataIt) => request<responseItem>({url: '/search',data})
+
+// 获取账号信息
+export const getAccountApi = (data:dataIt) => request<responseItem>({url: '/user/account', method: 'POST', data})

@@ -1,8 +1,8 @@
 <template>
         <view class="playBar"  :style="{bottom: `${bottom}px`}">
             <view class="left">
-                <view>
-                    <image :src="Store.song.al.picUrl" @click="go" mode="widthFix"></image>
+                <view :style="{background:`url('${Store.song.al.picUrl}')`}">
+                    <image src="../static/disc.png" @click="go" mode="widthFix"></image>
                 </view>
                 <text>{{Store.song.name}}</text>
             </view>
@@ -15,34 +15,10 @@
 </template>
 
 <script setup lang='ts'>
-import { watch} from 'vue'
-import { getSongAPI, playsong } from '@/servers/servers'
 import {useCounterStore} from '@/store/store'
-
 
 const Store = useCounterStore()
 const props = defineProps(['bottom'])
-
-watch(() => Store.detailId, () =>{
-    if(Store.detailId > 0){
-        getSong(Store.detailId)
-        playsong({id: Store.detailId}).then(res => {
-            Store.mp3 = res.data.data[0].url
-            console.log(Store.mp3,res.data.data[0].url)
-        })
-    }
-},{immediate: true})
-
-
-
-const getSong = async(id: number) => {
-    try{
-        const res = await getSongAPI({ids: id})
-        Store.song = res.data.songs[0]
-    } catch(e){
-        console.log(e)
-    }
-}
 
 const go = () => {
     uni.navigateTo({
@@ -69,10 +45,20 @@ const go = () => {
     .left{
         display: flex;
         align-items: center;
-        background: url('../static/disc.png') no-repeat;
-        background-size: 40px 40px;
+        view{
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            background-size: cover;
+            overflow: hidden;
+            image{
+                width:42px;
+                height:42px;
+                margin:-1px 0 0 -1px;
+            }
+        }
         text{
-            margin-left:20rpx;
+            margin-left:40rpx;
             font-size:14px;
         }
     }
@@ -91,9 +77,6 @@ const go = () => {
     }
     
 }
-image{
-    height:35px;
-    width:35px;
-}
+
 
 </style> 

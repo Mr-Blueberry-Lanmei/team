@@ -17,7 +17,13 @@ const list = ref<listIten[]>([])
 
 getdefault().then(res => list.value = res.data.list!.filter(v => v.tracks.length > 0))
 
-const add = (id: number) => uni.navigateTo({url: `/pages/detail/detail?id=${id * 1}`})
+function goDetalisPage(id: number){
+    uni.navigateTo({
+    url: `/pages/DetalisSongList/DetalisSongList?id=${id}`
+    });
+}
+
+const add = (id: number) => goDetalisPage(id)
 
 
 </script>
