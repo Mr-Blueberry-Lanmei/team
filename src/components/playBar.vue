@@ -15,27 +15,10 @@
 </template>
 
 <script setup lang='ts'>
-import { watch} from 'vue'
-import { getSongAPI, playsong } from '@/servers/servers'
 import {useCounterStore} from '@/store/store'
 
 const Store = useCounterStore()
 const props = defineProps(['bottom'])
-
-watch(() => Store.detailId, () =>{
-    if(Store.detailId > 0){
-        getSong(Store.detailId)
-    }
-},{immediate: true})
-
-const getSong = async(id: number) => {
-    try{
-        const res = await getSongAPI({ids: id})
-        Store.song = res.data.songs[0]
-    } catch(e){
-        console.log(e)
-    }
-}
 
 const go = () => {
     uni.navigateTo({

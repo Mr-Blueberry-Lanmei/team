@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue" 
-import { getBanner,getSongList,getNewSong } from "@/servers/servers"
+import { getBanner,getSongList,getNewSong} from "@/servers/servers"
 
 // 当前轮播图数据
 const imgArr=ref([]);
@@ -19,6 +19,7 @@ try{
     getSongList({limit:20})
     .then((obj)=>{
         songList.value=obj.data.result;
+        console.log(obj)
     })
     // 新鲜速递
     getNewSong({type:16})
@@ -27,20 +28,25 @@ try{
     })
 }catch(error){
     console.log(error)
+} 
+function goDetalisPage(id){
+    uni.navigateTo({
+	url: `/pages/DetalisSongList/DetalisSongList?id=${id}`
+    });
 }
 </script>
 
 <template>
 <!-- 音乐下的精选页 -->
     <view class="Choiceness">
-        <swiper class="banner">
+        <swiper class="banner" :autoplay="autoplay" :interval="interval" :circular="circular">
             <swiper-item v-for="(obj) in imgArr" :key="obj.encodeId">
-                <image :src="obj.imageUrl"></image>
+                <image :src="obj.imageUrl" mode="aspectFill"></image>
             </swiper-item>
         </swiper>
         <view style="color: #253348; font-weight: 600; font-size: 35rpx;margin:0 0 25rpx 30rpx;">甄选歌单</view>
         <view class="songList">
-            <view v-for="(obj,idx) in songList" :key="idx">
+            <view v-for="(obj,idx) in songList" :key="idx" @click="goDetalisPage(obj.id)">
                 <view>
                     <image :src="obj.picUrl"></image>
                 </view>
@@ -49,7 +55,7 @@ try{
         </view>
         <view style="color: #253348; font-weight: 600; font-size: 35rpx;margin:38rpx 0 25rpx 30rpx;">云村新鲜事</view>
         <view class="NewSongList">
-            <view v-for="(obj,idx) in NewSong" :key="idx">
+            <view v-for="(obj,idx) in NewSong" :key="idx"  @click="goDetalisPage(obj.id)">
                 <view>
                     <image :src="obj.album.blurPicUrl"></image>
                 </view>
@@ -106,15 +112,18 @@ try{
     @extend.songList;
 }
 .banner{
-    padding: 50rpx;
+    padding:50rpx;
     overflow: hidden;
     >swiper-item{
-        overflow: hidden;
-        position: relative;
+        width: 100%;
+        height: 248rpx;
+        border-radius:30rpx;
+        overflow: hidden !important;
         >image{
-            width: 740rpx;
-            height: 320rpx;
+            width: 100%;
+            height: 248rpx;
         }
     }
 }
+
 </style>
