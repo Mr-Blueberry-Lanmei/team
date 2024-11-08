@@ -8,27 +8,50 @@ export const useCounterStore = defineStore('counter',() => {
 	const detailId = ref(488388942)
   const flag = ref(false)
   const innerAudioContext = uni.createInnerAudioContext()
-  // jianli1
+  // 建立储存信息的song对象
   const song = ref({
     name: '願い～あの頃のキミへ～',
     al:{
     picUrl:  "https://p1.music.126.net/TBJ9yAhUs8UKWGFWuIJgxw==/109951165946337053.jpg"
     }
   })
+  // 播放地址
   const mp3 = ref('')
-  
-  innerAudioContext.src = mp3.value
-
+  // 记录播放时间
+  const curTime = ref('00:00')
+  const duration = ref('')
+  const parsent = ref(0)
+  // 监听歌曲的id
   watch(detailId,() => {
-    playsong({id: detailId.value}).then(res => {
-      mp3.value = res.data.data[0].url
-    })
+    playsong({id: detailId.value}).then(res => mp3.value = res.data.data[0].url)
+    getSongAPI({ids: detailId.value}).then(res => song.value = res.data.songs[0])
   },{immediate: true})
-  watch(mp3, () =>{ 
-    innerAudioContext.src = mp3.value , {immediate: true}})
 
-  innerAudioContext.onPlay(() => flag.value = true)
+  watch(mp3, () => {
+    innerAudioContext.src = mp3.value 
+    innerAudioContext.autoplay = true
+    , {immediate: true}})
+  
+  innerAudioContext.onCanplay(()=>{
+    const time = Number(innerAudioContext.duration.toFixed(0))
+    const min = Math.floor( time / 60) 
+    const second = time % 60
+    duration.value = (min >= 10 ? min : '0' + min ) + ':' + (second > 10 ? second : '0' + second )
+  })
+
+  innerAudioContext.onTimeUpdate(()=>{
+    const time = Number(innerAudioContext.currentTime.toFixed(0))
+    const min = Math.floor( time /60)
+    const second = time % 60
+    curTime.value = (min >= 10 ? min : '0' + min ) + ':' + (second >= 10 ? second : '0' + second)
+    parsent.value = Number((time / innerAudioContext.duration).toFixed(2)) * 100
+  })
+
+  innerAudioContext.onPlay(() => {
+    flag.value = true
+  })
   innerAudioContext.onPause(() => flag.value = false)
+
 
   const add =() => {
     if(flag.value){
@@ -44,6 +67,9 @@ export const useCounterStore = defineStore('counter',() => {
     flag,
     song,
     mp3,
-    add
+    add,
+    curTime,
+    parsent,
+    duration
   }
 });

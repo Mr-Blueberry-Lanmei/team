@@ -4,9 +4,11 @@
         <image class="back" src="../../static/icon-right.png" @click="back"></image>
         <text>每日推荐</text>
     </view>
-    <view class="pic">
-        <image :src="song[0].al.picUrl" class="cover"></image>
+    <view class="box">
         <image src="../../static/needle-ab.png" class="needle"></image>
+        <view :class="['pic', {anim:store.flag}]">
+            <image :src="song[0].al.picUrl" class="cover"></image>
+        </view>
     </view>
     <view class="del">
         <text class="name">{{ store.song.name }}</text>
@@ -15,12 +17,12 @@
             <image src="../../static/icon-right.png"></image>
         </view>
         <view class="progress-box">
-				<progress percent="0" stroke-width="3" backgroundColor="#999999" activeColor="#FFFFFF" />
+			<progress :percent="store.parsent" stroke-width="3" backgroundColor="#999999" activeColor="#0000FF"/>
 		</view>
         <view class="time">
-            <text class="curTime">0:00</text>
+            <text class="curTime">{{ store.curTime }}</text>
             <text>极高</text>
-            <text class="totleTime">3:15</text>
+            <text class="totleTime">{{ store.duration }}</text>
         </view>
         <view class="menu">
             <image class="type" src="../../static/loops.png"></image>
@@ -47,6 +49,7 @@ import { getSongAPI } from '@/servers/servers'
 const id = ref()
 const song = ref()
 const store = useCounterStore()
+console.log(store.duration)
  
 const getSong = async() => {
     try {
@@ -59,6 +62,8 @@ const getSong = async() => {
     }
 }
 
+
+
 const back = ()=>{
     uni.navigateBack()
 }
@@ -69,10 +74,19 @@ onLoad((option:any) => {
     getSong()
 })
 console.log(song.value)
+console.log(store.curTime)
 
 </script>
 
 <style lang='scss' scoped>
+@keyframes play {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
 .player{
     padding: 10px 0;
     .title{
@@ -93,6 +107,17 @@ console.log(song.value)
             transform: rotate(180deg);
         }
     }
+    .box{
+        position:relative;
+        .needle{
+            position:absolute;
+            top:20px;
+            left:70px;
+            width:140px;
+            height:180px;
+            z-index: 9;
+        }
+    }
    .pic{
         width:250px;
         height:250px;
@@ -109,14 +134,6 @@ console.log(song.value)
             top:45px;
             left:45px;
             z-index: -1;
-        }
-        .needle{
-            position:absolute;
-            top:20px;
-            left:10px;
-            width:140px;
-            height:180px;
-            z-index: 9;
         }
    }
    .del{
@@ -184,5 +201,8 @@ console.log(song.value)
         width:100%;
         height:100%;
     }
+}
+.anim{
+    animation: play 5s linear infinite;
 }
 </style>

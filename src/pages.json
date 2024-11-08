@@ -7,7 +7,10 @@
 			}
 		},
 		{
-			"path": "pages/mine/mine"
+			"path": "pages/mine/mine",
+			"style":{
+				"navigationStyle":"custom"
+			}
 		},
 		{
 			"path": "pages/search/search",
@@ -41,9 +44,6 @@
 		},
 		{
 			"path": "pages/detail/detail"
-		},
-		{
-			"path": "pages/songdetail/songdetail"
 		},
 		{
 			"path":"pages/DetalisSongList/DetalisSongList",
