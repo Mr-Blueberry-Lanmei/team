@@ -20,10 +20,7 @@ import type{playlistsitem} from '@/servers/type'
 
 const list = ref<playlistsitem[]>([])
 
-gethot().then(res => {
-  list.value = res.data.playlists!
-  console.log(list.value)
-})
+gethot().then(res => list.value = res.data.playlists!)
 
 const add =(id: number) => uni.navigateTo({url: `/pages/songdetail/songdetail?id=${id * 1}`})
 

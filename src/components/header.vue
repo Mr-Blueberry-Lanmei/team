@@ -1,19 +1,22 @@
 <template>
     <view class="header">
-      <view class="iconfont icon-gengduo"></view>
+      <view class="iconfont icon-gengduo" @tap="flag = true"></view>
       <input type="text" class="inp" @focus="add" :placeholder="tip">
       <view class="iconfont icon-yuyin"></view>
     </view>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue" 
+import { ref, defineEmits } from "vue" 
 import {getsearch} from '@/servers/servers'
 import type{hostitem} from '@/servers/type'
 
 const add =() => uni.navigateTo({url: "/pages/search/search"})
 const tips = ref<hostitem[]>([])
 const tip = ref('')
+
+const flag = defineModel()
+console.log(flag)
 
 getsearch().then(res => tips.value = res.data.result.hots)
 

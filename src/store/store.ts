@@ -3,6 +3,7 @@ import {ref, watch} from 'vue'
 import { getSongAPI, playsong } from '@/servers/servers'
 
 export const useCounterStore = defineStore('counter',() => {
+  // 声明空的音乐id 用户id 建立显示播放暂停图标的开关
 	const userId = ref(0)
 	const detailId = ref(488388942)
   const flag = ref(false)
@@ -19,12 +20,12 @@ export const useCounterStore = defineStore('counter',() => {
   innerAudioContext.src = mp3.value
 
   watch(detailId,() => {
-    console.log(111)
     playsong({id: detailId.value}).then(res => {
       mp3.value = res.data.data[0].url
     })
   },{immediate: true})
-  watch(mp3, () => innerAudioContext.src = mp3.value , {immediate: true})
+  watch(mp3, () =>{ 
+    innerAudioContext.src = mp3.value , {immediate: true}})
 
   innerAudioContext.onPlay(() => flag.value = true)
   innerAudioContext.onPause(() => flag.value = false)
