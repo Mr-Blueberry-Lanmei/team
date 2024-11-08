@@ -18,7 +18,7 @@ const getQR = async () => {
   // console.log(keyRes.data.data.unikey)
   unikey.value = keyRes.data.data.unikey
   // 创建二维码
-  const qrRes = await qrCreateApi(unikey.value)
+  const qrRes = await qrCreateApi({key:unikey.value})
   // console.log(qrRes.data.data.qrimg)
   qrimg.value = qrRes.data.data.qrimg
   // 查询二维码状态
