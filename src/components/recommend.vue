@@ -25,7 +25,7 @@ gethot().then(res => {
   console.log(list.value)
 })
 
-const add =(id: number) => uni.navigateTo({url: `/pages/songdetail/songdetail?id=${id * 1}`})
+const add =(id: number) => uni.navigateTo({url: `/pages/DetalisSongList/DetalisSongList?id=${id * 1}`})
 
 </script>
 

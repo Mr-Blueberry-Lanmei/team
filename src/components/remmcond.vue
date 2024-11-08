@@ -15,7 +15,7 @@
                     ></image>
                 </view>
                 <view class="share" v-if="JSON.parse(item.json).song">
-                    <image src="../static/play.png" class="icon"></image>
+                    <image src="../static/play.png" class="icon" @click="add(JSON.parse(item.json).song.id)"></image>
                     <image :src="JSON.parse(item.json).song.album.picUrl" @click="add(JSON.parse(item.json).song.id)"></image>
                     <view>
                         <view>{{ JSON.parse(item.json).song.name }}</view>
@@ -55,6 +55,7 @@ const getDynamic = async() => {
 getDynamic()
 
 const add = (id:number) => {
+    console.log(111)
     store.detailId = id
 }
 

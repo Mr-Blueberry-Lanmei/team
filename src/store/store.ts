@@ -44,6 +44,7 @@ export const useCounterStore = defineStore('counter',() => {
 
   innerAudioContext.onPlay(() => {
     flag.value = true
+    innerAudioContext.autoplay = true
   })
   innerAudioContext.onPause(() => flag.value = false)
 
