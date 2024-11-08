@@ -1,13 +1,20 @@
 <script setup>
 import {defineProps} from "vue"
 const props=defineProps(["data","tit"])
+
+// 跳转歌单详情
+function goDetalisPage(id){
+    uni.navigateTo({
+	url: `/pages/DetalisSongList/DetalisSongList?id=${id}`
+    });
+}
 </script>
 
 <template>
     <view class="RankListSquare">
         <text>{{ tit }}</text>
         <view class="body">
-            <view v-for="(obj,idx) in data" :key="idx">
+            <view v-for="(obj,idx) in data" :key="idx" @click="goDetalisPage(obj.id)">
                 <image :src="obj.coverImgUrl" mode="widthFix"></image>
             </view>
         </view>
