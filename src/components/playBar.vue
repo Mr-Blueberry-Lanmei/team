@@ -1,42 +1,48 @@
 <template>
-        <view class="playBar" @click="go">
+        <view class="playBar"  :style="{bottom: `${bottom}px`}">
             <view class="left">
-                <view>
-                    <image></image>
+                <view :style="{background:`url('${Store.song.al.picUrl}')`}">
+                    <image src="../static/disc.png" @click="go" mode="widthFix"></image>
                 </view>
-                <text>{{ song[0].name }}</text>
+                <text>{{Store.song.name}}</text>
             </view>
             <view class="right">
-                <image src="../static/icon-play.png" class="play"></image>
+                <image v-if="!Store.flag" src="../static/icon-play.png" class="play" @tap="Store.add"></image>
+                <image v-else src="../static/zanting.png" class="play" @tap="Store.add"></image>
                 <image src="../static/playlist.png" class="list"></image>
             </view>
         </view>
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue'
-import { getSongAPI,getSongUrlAPI } from '@/servers/servers'
+import { watch} from 'vue'
+import { getSongAPI, playsong } from '@/servers/servers'
+import {useCounterStore} from '@/store/store'
 
-const ids = ref(347231)
-const data = { ids:ids.value }
-const song = ref<AnyObject>()
-const getSong = async() => {
+const Store = useCounterStore()
+const props = defineProps(['bottom'])
+
+watch(() => Store.detailId, () =>{
+    if(Store.detailId > 0){
+        getSong(Store.detailId)
+    }
+},{immediate: true})
+
+const getSong = async(id: number) => {
     try{
-        const res = await getSongAPI(data)
-        const url = await getSongUrlAPI({id:ids.value})
-        console.log(res.data,url.data)
-        song.value = res.data.songs
+        const res = await getSongAPI({ids: id})
+        Store.song = res.data.songs[0]
     } catch(e){
         console.log(e)
     }
 }
-getSong()
-console.log(ids.value)
+
 const go = () => {
     uni.navigateTo({
-        url:'/pages/player/player?ids='+ ids.value,
+        url:`/pages/player/player?ids=${Store.detailId}`
     })
 }
+
 </script>
 
 <style lang='scss' scoped>
@@ -48,7 +54,6 @@ const go = () => {
     background:#fff;
     border-top:1px solid #ccc;
     position:fixed;
-    bottom:50px;
     z-index: 9;
     left:0; 
     justify-content: space-between;
@@ -57,10 +62,20 @@ const go = () => {
     .left{
         display: flex;
         align-items: center;
-        background: url('../static/disc.png') no-repeat;
-        background-size: 40px 40px;
+        view{
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            background-size: cover;
+            overflow: hidden;
+            image{
+                width:42px;
+                height:42px;
+                margin:-1px 0 0 -1px;
+            }
+        }
         text{
-            margin-left:20rpx;
+            margin-left:40rpx;
             font-size:14px;
         }
     }
@@ -79,9 +94,6 @@ const go = () => {
     }
     
 }
-image{
-    height:35px;
-    width:35px;
-}
 
-</style>
+
+</style> 

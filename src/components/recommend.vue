@@ -55,10 +55,10 @@ const add =(id: number) => uni.navigateTo({url: `/pages/songdetail/songdetail?id
   box-sizing: border-box;
   font-size: 12px;
   display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2; /* 限制在一个块元素显示的文本的行数 */
-            overflow: hidden; /* 隐藏超出的内容 */
-            text-overflow: ellipsis; /* 溢出时显示省略号 */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* 限制在一个块元素显示的文本的行数 */
+  overflow: hidden; /* 隐藏超出的内容 */
+  text-overflow: ellipsis; /* 溢出时显示省略号 */
 }
 .ittem{
   &:not(:first-child){

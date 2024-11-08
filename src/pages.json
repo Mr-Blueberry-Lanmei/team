@@ -7,13 +7,22 @@
 			"path": "pages/mine/mine"
 		},
 		{
+			"path": "pages/search/search",
+			"style":{
+				"navigationStyle":"custom"
+			}
+		},
+		{
 			"path": "pages/discover/discover",
 			"style":{
 				"navigationStyle":"custom"
 			}
 		},
 		{
-			"path": "pages/login/login"
+			"path": "pages/login/login",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		},
 		{
 			"path": "pages/dynamic/dynamic",
@@ -22,7 +31,10 @@
 			}
 		},
 		{
-			"path":"pages/player/player"
+			"path":"pages/player/player",
+			"style":{
+				"navigationStyle":"custom"
+			}
 		},
 		{
 			"path": "pages/detail/detail"
@@ -35,6 +47,9 @@
 			"style":{
 				"navigationStyle":"custom"
 			}
+		},
+		{
+			"path": "pages/searchsong/searchsong"
 		}
 	],
 	"tabBar": {

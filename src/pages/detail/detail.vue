@@ -1,6 +1,6 @@
 <template>
     <view class="tip">{{list.name}}</view>
-    <view v-for="v in list.tracks" class="songs">
+    <view v-for="v in list.tracks" class="songs" @tap="">
       <view>{{ v.first }}</view>
       <view class="singer">{{ v.second }}</view> 
     </view>
@@ -14,10 +14,11 @@ import type{listIten} from '../../servers/type'
 
 const list = ref<listIten>({} as listIten)
 const id = ref(0)
+const bottom = ref(0)
 
 getdefault().then(res => {
   list.value = res.data.list!.find(v => v.id === id.value)!
-  console.log(list.value.tracks)
+  console.log(res)
 })
 
 onLoad((Option) => {

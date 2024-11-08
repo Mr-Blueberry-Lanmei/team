@@ -14,6 +14,32 @@ export interface responseItem {
   data:AnyObject;
   playlist?: playlist;
   banners:bannersitem[];
+  songs: songsitem[];
+  result: {
+    hots: hostitem[]; 
+    songs:songsitem[];
+  }
+}
+export interface songsitem {
+  id: number;
+  name: string;
+  album:{
+    id: number;
+    name: string;
+  };
+  artists:tracks[]
+}
+export interface hostitem{
+  first: string;
+}
+export interface songsitem {
+  name: string;
+  id: number;
+  al: aliten;
+}
+interface aliten {
+  id: number;
+  picUrl: string
 }
 export interface eventItem {
   data?: dataitem[];
@@ -75,6 +101,7 @@ interface dataitem {
   id: number;
   phone: number;
   password: number;
+  keywords: string;
 }
 
 export type dataIt = Partial<dataitem>
