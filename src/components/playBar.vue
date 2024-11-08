@@ -26,14 +26,8 @@ const props = defineProps(['bottom'])
 watch(() => Store.detailId, () =>{
     if(Store.detailId > 0){
         getSong(Store.detailId)
-        playsong({id: Store.detailId}).then(res => {
-            Store.mp3 = res.data.data[0].url
-            console.log(Store.mp3,res.data.data[0].url)
-        })
     }
 },{immediate: true})
-
-
 
 const getSong = async(id: number) => {
     try{

@@ -76,3 +76,9 @@ export const getRankList = ()=>request<responseItem>({url:'/toplist/detail'});
 
 // 所有榜单
 export const getAllRankList = ()=>request<responseItem>({url:'/toplist'});
+
+// 搜索关键字
+export const getsearch = () => request<responseItem>({url: '/search/hot'})
+
+// 搜索
+export const getseadeta = (data: dataIt) => request<responseItem>({url: '/search',data})

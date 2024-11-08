@@ -1,21 +1,25 @@
 <template>
-    <view class="header">
-      <view class="iconfont icon-gengduo"></view>
-      <input type="text" class="inp" @focus="add" :placeholder="tip">
-      <view class="iconfont icon-yuyin"></view>
-    </view>
+  <view class="header">
+      <view class="iconfont icon-fanhui" @tap="add"></view>
+      <input type="text" class="inp" :placeholder="tip" v-model="search">
+      <view class="tip" @tap="acc">搜索</view>
+  </view>
 </template>
 
 <script lang="ts" setup>
+import Search from "@/pages/search/search.vue";
 import { ref } from "vue" 
-import {getsearch} from '@/servers/servers'
+import {getsearch, getseadeta} from '@/servers/servers'
 import type{hostitem} from '@/servers/type'
 
-const add =() => uni.navigateTo({url: "/pages/search/search"})
+const add = () => uni.navigateBack({delta: 1})
 const tips = ref<hostitem[]>([])
 const tip = ref('')
+const search = ref('')
 
+const acc = () => uni.navigateTo({url: `/pages/searchsong/searchsong?keywords=${search.value}`})
 getsearch().then(res => tips.value = res.data.result.hots)
+
 
 const tipfunct = () => {
   let i = 0
@@ -30,7 +34,6 @@ tipfunct()
 </script>
 
 <style lang="scss" scoped>
-
 .header{
   padding: 0;
   margin: 0;
@@ -40,11 +43,12 @@ tipfunct()
   align-items: center;
   padding: 0 20rpx;
   box-sizing: border-box;
+  margin-top: 30rpx;
   .iconfont{
     font-size: 50rpx;
   }
   .inp{
-    width: 550rpx;
+    width: 450rpx;
     height: 50rpx;
     border: 1px solid black;
     margin: 0 30rpx;
@@ -54,5 +58,10 @@ tipfunct()
     background-size:30rpx 30rpx;
     background-position: left 20rpx top 10rpx; 
   }
+  .tip{
+    font-size: 14px;
+    width: 100rpx;
+  }
 }
 </style>
+ 

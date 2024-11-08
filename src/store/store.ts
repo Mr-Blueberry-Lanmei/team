@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia';
 import {ref, watch} from 'vue'
+import { getSongAPI, playsong } from '@/servers/servers'
 
 export const useCounterStore = defineStore('counter',() => {
 	const userId = ref(0)
 	const detailId = ref(488388942)
   const flag = ref(false)
   const innerAudioContext = uni.createInnerAudioContext()
+
   const song = ref({
     name: '願い～あの頃のキミへ～',
     al:{
@@ -17,9 +19,13 @@ export const useCounterStore = defineStore('counter',() => {
   innerAudioContext.autoplay = true 
   innerAudioContext.src = mp3.value
 
-  watch(mp3,() => {
-    innerAudioContext.src = mp3.value
+  watch(detailId,() => {
+    console.log(111)
+    playsong({id: detailId.value}).then(res => {
+      mp3.value = res.data.data[0].url
+    })
   })
+  watch(mp3, () => innerAudioContext.src = mp3.value )
 
   innerAudioContext.onPlay(() => flag.value = true)
   innerAudioContext.onPause(() => flag.value = false)

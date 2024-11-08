@@ -15,6 +15,22 @@ export interface responseItem {
   playlist?: playlist;
   banners:bannersitem[];
   songs: songsitem[];
+  result: {
+    hots: hostitem[]; 
+    songs:songsitem[];
+  }
+}
+export interface songsitem {
+  id: number;
+  name: string;
+  album:{
+    id: number;
+    name: string;
+  };
+  artists:tracks[]
+}
+export interface hostitem{
+  first: string;
 }
 export interface songsitem {
   name: string;
@@ -85,6 +101,7 @@ interface dataitem {
   id: number;
   phone: number;
   password: number;
+  keywords: string;
 }
 
 export type dataIt = Partial<dataitem>
