@@ -1,14 +1,12 @@
 <script setup>
-import {defineProps} from "vue"
-const props=defineProps(["url"]);
-function backPage(){
-    uni.navigateBack()
-}
+import {defineProps,defineModel} from "vue"
+const props=defineProps(["url"])
+const flag = defineModel('flag')
 </script>
 
 <template>
     <view class="imgBox">
-        <text @click="backPage">&times;</text>
+        <text @click="flag = false">&times;</text>
         <view class="imgPop">
             <image :src="url" mode="widthFix"></image>
         </view>
