@@ -2,10 +2,20 @@
 import { ref } from 'vue'
 
 const showComment = ref<boolean>(false)
+
+const goBack = () => {
+  uni.switchTab({
+    url: '/pages/mine/mine'
+  })
+}
+
 </script>
 
 <template>
   <view class="header">
+    <view class="navHeader">
+      <text @click="goBack">< &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;歌单</text>
+    </view>
     <view class="bg">
       <view class="after"></view>
     </view>
@@ -54,9 +64,22 @@ const showComment = ref<boolean>(false)
 <style lang="scss" scoped>
 .header {
   padding: 30rpx;
+  padding-top: 120rpx;
   position: relative;
   overflow: hidden;
   color: white;
+}
+.navHeader {
+  position: absolute;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: white;
+  width: 100%;
+  background: pink;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  padding: 0 30rpx;
 }
 .bg {
   position: absolute;
