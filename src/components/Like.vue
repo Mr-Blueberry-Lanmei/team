@@ -1,5 +1,9 @@
 <script setup lang="ts">
-
+const goLike = () => {
+  uni.navigateTo({
+    url: '/pages/likeSong/likeSong'
+  })
+}
 </script>
 
 <template>
@@ -8,7 +12,7 @@
       <view class="like1">
           <view class="like-pic"><image src="../static/喜欢.png" alt="" /></view>
           <view class="like-content">
-            <view class="like-title">我喜欢的音乐</view>
+            <view class="like-title" @click="goLike">我喜欢的音乐</view>
             <view class="like-desc"><span>0首</span>~<span>0次播放</span></view>
           </view>
       </view>

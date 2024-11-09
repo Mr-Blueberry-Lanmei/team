@@ -13,16 +13,16 @@
       <view class="nickname">{{user.profile?.nickname}}</view>
       <view class="test">
         <view class="test-tag">
-          <text class="bold">{{user.profile.followeds}}</text>关注
+          <text class="bold">{{user.profile.followeds || 15}}</text>关注
         </view>
         <view class="test-tag">
-          <text class="bold">{{user.profile.follows}}</text>粉丝
+          <text class="bold">{{user.profile.follows || 16}}</text>粉丝
         </view>
         <view class="test-tag">
-          <text class="bold">Lv.{{user.profile.level}}</text>等级
+          <text class="bold">Lv.{{user.profile.level || 9}}</text>等级
         </view>
         <view class="test-tag">
-          <text class="bold">{{user.profile.listenSongs}}首</text>听歌
+          <text class="bold">{{user.profile.listenSongs || 6173}}时</text>听歌
         </view>
       </view>
       <view class="tab">
