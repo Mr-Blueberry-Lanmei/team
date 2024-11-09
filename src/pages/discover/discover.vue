@@ -4,18 +4,15 @@ import Music from "./subPage/Music.vue"
 import Blogger from "./subPage/Blogger.vue";
 import Live from "./subPage/Live.vue";
 import Book from "./subPage/Book.vue";
-import BigImage from "@/components/BigImage.vue";
 
 //当前一级页面下标
 const index=ref(0);
 const model=ref([Music,Blogger,Live,Book])
 const titList=ref(["音乐","博客","听书","直播"]);
-console.log("测试分支")
 </script> 
 
 <template>
     <view class="box">
-        <BigImage></BigImage>
         <view class="tit">
             <text v-for="(str,idx) in titList" :key="idx" :class="{titOn:index===idx}" @click="index=idx">{{str}}</text>
             <icon type="search" style="line-height:100rpx;"  color="#4f596e"></icon>
