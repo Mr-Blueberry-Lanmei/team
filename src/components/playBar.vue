@@ -37,7 +37,7 @@ const go = () => {
     background:#fff;
     border-top:1px solid #ccc;
     position:fixed;
-    z-index: 9;
+    z-index: 99;
     left:0; 
     justify-content: space-between;
     align-items:center;
