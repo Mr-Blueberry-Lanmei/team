@@ -1,6 +1,6 @@
 <script setup>
 import {defineProps,defineModel} from "vue"
-const props=defineProps(["url"])
+const props = defineProps(["url"])
 const flag = defineModel('flag')
 </script>
 
@@ -25,13 +25,13 @@ const flag = defineModel('flag')
         position: fixed;
         top:0;
         left:0;
-        z-index: 999;
+        z-index: 9999;
         >text{
             position: absolute;
             color: #fff;
             width: 100rpx;
             height: 100rpx;
-            font-size: 100rpx;
+            font-size: 70rpx;
             line-height: 100rpx;
             text-align: center;
             font-weight: 500;

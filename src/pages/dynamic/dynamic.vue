@@ -49,7 +49,7 @@ const go = () => {
     position:sticky;
     top:0;
     height:100rpx;
-    border-bottom:1px solid #eee;
+    border-bottom:2rpx solid #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,7 +61,7 @@ const go = () => {
         width:50rpx;
     }
     text{
-        margin:0 10px;
+        margin:0 20rpx;
         font-weight:bold;
         font-size: 18px;
         color:#999;
@@ -73,7 +73,7 @@ const go = () => {
 .pop{
     width:100vw;
     height:100vh;
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     background:rgba(0,0,0,0.1);

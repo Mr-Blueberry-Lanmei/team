@@ -64,9 +64,6 @@ const add = (id:number) => {
     store.detailId = id
 }
 
-const change = () => {
-
-}
 
 </script>
 

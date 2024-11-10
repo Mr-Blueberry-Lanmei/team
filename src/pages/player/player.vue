@@ -17,8 +17,7 @@
             <image src="../../static/icon-right.png"></image>
         </view>
         <view class="progress-box">
-			<progress :percent="store.parsent" stroke-width="3" backgroundColor="#999999" activeColor="#0000FF"/>
-            <!-- <view class="bar"  @click="change"></view> -->
+			<slider :value="store.parsent" @change="sliderChange" activeColor="#ffffff" backgroundColor="#000000" block-size="13" />
 		</view>
         <view class="time">
             <text class="curTime">{{ store.curTime }}</text>
@@ -72,9 +71,10 @@ onLoad((option:any) => {
 })
 console.log(song.value)
 
-// const change = (event:any) => {
-//     console.log(event.target)
-// }
+const sliderChange = (e:any) => {
+    const num = e.detail.value
+    store.silderChange(num)
+}
 
 </script>
 
@@ -111,17 +111,15 @@ console.log(song.value)
         position:relative;
         .needle{
             position:absolute;
-            top:20px;
+            top:22px;
             left:70px;
             width:140px;
-            height:180px;
+            height:200px;
             z-index: 9;
-            transition: all 0.5s;
         }
         .start{
-            top:28px;
-            left:5px;
-            transform: rotate(50deg);
+            transform-origin: 15px 10px;
+            transform: rotate(40deg);
         }
     }
    .pic{
@@ -132,6 +130,7 @@ console.log(song.value)
         background:url('../../static/disc.png');
         background-size: 250px;
         position: relative;
+        overflow: hidden;
         .cover{
             width:160px;
             height:160px;
@@ -140,6 +139,7 @@ console.log(song.value)
             top:45px;
             left:45px;
             z-index: -1;
+            overflow: hidden;
         }
    }
    .del{

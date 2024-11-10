@@ -25,7 +25,7 @@ try{
     // 所有榜单内容摘要
     getRankList()
     .then((obj)=>{
-        rankList.value=obj.data.list.slice(0,6)
+        rankList.value = obj.data.list.slice(0,6)
         flag.value=false;
     })
     // 所有榜单
