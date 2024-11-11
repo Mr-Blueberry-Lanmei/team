@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import {getRankList,getAllRankList} from "@/servers/servers"
+import {getRankList,getAllRankList,getDetalisSongList} from "@/servers/servers"
 import RankListSquare from "../../../../components/RankListSquare.vue";
 import Loading from "@/components/Loading.vue";
 
@@ -25,24 +25,29 @@ try{
     // 所有榜单内容摘要
     getRankList()
     .then((obj)=>{
-        rankList.value=obj.data.list.slice(0,6)
+        rankList.value = obj.data.list.slice(0,6)
         flag.value=false;
     })
     // 所有榜单
     getAllRankList()
     .then((obj)=>{
-        console.log(obj.data.list)
         firstList.value=obj.data.list.slice(0,15);
         secondList.value=obj.data.list.slice(16,21);
         thirdList.value=obj.data.list.slice(21,30);
         fourthList.value=obj.data.list.slice(30,43);
         fifthList.value=obj.data.list.slice(43,55);
-        recommend.value=obj.data.list.slice(43,46)
+        recommend.value=obj.data.list.slice(43,46);
     })
 }catch(error){
     console.log(error);
 }
 
+// 跳转歌单详情
+function goDetalisPage(id){
+    uni.navigateTo({
+	url: `/pages/DetalisSongList/DetalisSongList?id=${id}`
+    });
+}
 </script> 
 
 <template>
@@ -53,7 +58,7 @@ try{
             <view></view>
             <text>官方榜</text>
         </view>
-        <view v-for="(obj,idx) in rankList" :key="idx" class="rankItem">
+        <view v-for="(obj,idx) in rankList" :key="idx" class="rankItem" @click="goDetalisPage(obj.id)">
             <view class="header">
                 <text>{{ obj.name }}</text>
                 <text>{{ obj.updateFrequency }}</text>

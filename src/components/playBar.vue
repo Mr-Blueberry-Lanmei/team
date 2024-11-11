@@ -37,7 +37,7 @@ const go = () => {
     background:#fff;
     border-top:1px solid #ccc;
     position:fixed;
-    z-index: 9;
+    z-index: 999;
     left:0; 
     justify-content: space-between;
     align-items:center;
@@ -50,6 +50,7 @@ const go = () => {
             height:40px;
             border-radius:50%;
             overflow: hidden;
+            flex-shrink: 0;
             image{
                 width:42px;
                 height:42px;
@@ -57,13 +58,15 @@ const go = () => {
             }
         }
         text{
-            margin-left:40rpx;
+            margin-left:30rpx;
             font-size:14px;
+            flex:1;
         }
     }
     .right{
         display: flex;
         align-items: center;
+        flex-shrink: 0;
         .play{
             width:55rpx;
             height:55rpx;

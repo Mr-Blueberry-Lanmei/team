@@ -15,6 +15,7 @@ export interface responseItem {
   playlist?: playlist;
   banners:bannersitem[];
   songs: songsitem[];
+  events?:AnyObject;
   result: {
     hots: hostitem[]; 
     songs:songsitem[];

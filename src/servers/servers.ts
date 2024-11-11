@@ -17,7 +17,6 @@ export const getData = () => request<responseItem>({url:'/playmode/intelligence/
 //歌曲详情
 export const getSongAPI = (data:any)=>request<responseItem>({url:'/song/detail', data})
 
-
 // 获取验证码
 export const captchaSentApi = (data:dataIt) => request<responseItem>({url: `/captcha/sent?timestamp=${Date.now()}`, data})
 
@@ -80,6 +79,7 @@ export const getAllRankList = ()=>request<responseItem>({url:'/toplist'});
 
 // 请求歌单详情
 export const getDetalisSongList = (data:dataIt) =>request<responseItem>({url:'/playlist/detail',data})
+
 // 搜索关键字
 export const getsearch = () => request<responseItem>({url: '/search/hot'})
 
@@ -88,3 +88,6 @@ export const getseadeta = (data: dataIt) => request<responseItem>({url: '/search
 
 // 获取账号信息
 export const getAccountApi = (data:dataIt) => request<responseItem>({url: '/user/account', method: 'POST', data})
+
+// 获取博客列表
+export const getBloggerList=()=>request<responseItem>({url:'/voicelist/search'})

@@ -5,7 +5,7 @@
         <text>每日推荐</text>
     </view>
     <view class="box">
-        <image src="../../static/needle-ab.png" class="needle"></image>
+        <image src="../../static/needle-ab.png" :class="['needle',{start:!store.flag}]"></image>
         <view :class="['pic', {anim:store.flag}]">
             <image :src="song[0].al.picUrl" class="cover"></image>
         </view>
@@ -17,7 +17,7 @@
             <image src="../../static/icon-right.png"></image>
         </view>
         <view class="progress-box">
-			<progress :percent="store.parsent" stroke-width="3" backgroundColor="#999999" activeColor="#0000FF"/>
+			<slider :value="store.parsent" @change="sliderChange" activeColor="#ffffff" backgroundColor="#000000" block-size="13" />
 		</view>
         <view class="time">
             <text class="curTime">{{ store.curTime }}</text>
@@ -49,7 +49,6 @@ import { getSongAPI } from '@/servers/servers'
 const id = ref()
 const song = ref()
 const store = useCounterStore()
-console.log(store.duration)
  
 const getSong = async() => {
     try {
@@ -62,19 +61,20 @@ const getSong = async() => {
     }
 }
 
-
-
 const back = ()=>{
     uni.navigateBack()
 }
 
 onLoad((option:any) => {
     id.value = option.ids
-    console.log(option)
     getSong()
 })
 console.log(song.value)
-console.log(store.curTime)
+
+const sliderChange = (e:any) => {
+    const num = e.detail.value
+    store.silderChange(num)
+}
 
 </script>
 
@@ -111,11 +111,15 @@ console.log(store.curTime)
         position:relative;
         .needle{
             position:absolute;
-            top:20px;
+            top:22px;
             left:70px;
             width:140px;
-            height:180px;
+            height:200px;
             z-index: 9;
+        }
+        .start{
+            transform-origin: 15px 10px;
+            transform: rotate(40deg);
         }
     }
    .pic{
@@ -126,6 +130,7 @@ console.log(store.curTime)
         background:url('../../static/disc.png');
         background-size: 250px;
         position: relative;
+        overflow: hidden;
         .cover{
             width:160px;
             height:160px;
@@ -134,6 +139,7 @@ console.log(store.curTime)
             top:45px;
             left:45px;
             z-index: -1;
+            overflow: hidden;
         }
    }
    .del{
@@ -155,6 +161,16 @@ console.log(store.curTime)
         }
         .progress-box{
             margin-top:20px;
+            position:relative;
+            .bar{
+                width:10px;
+                height:10px;
+                border-radius:50%;
+                position:absolute;
+                top:-4px;
+                left:0;
+                background:red;
+            }
         }
         .time{
             display: flex;
