@@ -15,7 +15,7 @@
 <script lang="ts" setup>
 import Search from "@/pages/search/search.vue";
 import { ref } from "vue" 
-import {getsearch, getseadeta} from '@/servers/servers'
+import {getsearch} from '@/servers/servers'
 import type{hostitem} from '@/servers/type'
 import {useHistoryStory} from '@/store/history'
 
@@ -24,6 +24,7 @@ const history = useHistoryStory()
 const tips = ref<hostitem[]>([])
 const tip = ref('')
 const search = ref('')
+
 
 const acc = () => uni.navigateTo({url: `/pages/searchsong/searchsong?keywords=${search.value}`})
 getsearch().then(res => tips.value = res.data.result.hots)
@@ -51,7 +52,6 @@ tipfunct()
   align-items: center;
   padding: 0 20rpx;
   box-sizing: border-box;
-  margin-top: 30rpx;
   .iconfont{
     font-size: 50rpx;
   }
@@ -65,6 +65,7 @@ tipfunct()
     background: url('../static/sousuo.png') no-repeat left;
     background-size:30rpx 30rpx;
     background-position: left 20rpx top 10rpx; 
+    background-color: white;
   }
   .tip{
     font-size: 14px;

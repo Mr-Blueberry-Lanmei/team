@@ -20,8 +20,9 @@ export interface responseItem {
     songs:songsitem[];
   }
   events?:AnyObject;
-  cookie: string
+  cookie: string;
 }
+
 export interface songsitem {
   id: number;
   name: string;

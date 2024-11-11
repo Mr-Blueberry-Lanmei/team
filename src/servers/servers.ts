@@ -84,4 +84,4 @@ export const getDetalisSongList = (data:dataIt) =>request<responseItem>({url:'/p
 export const getsearch = () => request<responseItem>({url: '/search/hot'})
 
 // 搜索
-export const getseadeta = (data: dataIt) => request<responseItem>({url: '/search',data})
+export const getseadeta = (data: dataIt) => request<responseItem>({url: '/cloudsearch',data})

@@ -2326,6 +2326,11 @@
   resolved "https://registry.npmmirror.com/@vue/tsconfig/-/tsconfig-0.5.1.tgz#3124ec16cc0c7e04165b88dc091e6b97782fffa9"
   integrity sha512-VcZK7MvpjuTPx2w6blwnwZAu5/LgBUtejFOi3pPGQFXQN5Ela03FUtd2Qtg4yWGGissVL0dr6Ro1LfOFh+PCuQ==
 
+"@zebra-ui/uniapp@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.npmmirror.com/@zebra-ui/uniapp/-/uniapp-2.0.2.tgz#e939690b3110895e3e59b3dd1d9f37db9bfac3e4"
+  integrity sha512-cGRCDNp2yktsKmgR86whyiqec3psI1OriyACyiFs1urLV4cpBZq0oAT3u2j4vDYT5xs8ONks/uSmZIz7aii4yQ==
+
 accepts@~1.3.8:
   version "1.3.8"
   resolved "https://registry.npmmirror.com/accepts/-/accepts-1.3.8.tgz#0bf0be125b67014adcb0b0921e62db7bffe16b2e"

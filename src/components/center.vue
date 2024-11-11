@@ -1,7 +1,16 @@
 <template>
     <view :class="['box',{active: flag}]" v-if="flag" @tap="flag = false"></view>
     <view :class="['con',{active: flag},{leave: !flag}]">
-      
+      <view>
+        <view>双人空间</view>
+      </view>
+      <view>
+        <view>我的信息</view>
+        <view>云贝中心</view>
+        <view>微章中心</view>
+        <view>装扮中心</view>
+        <view>创作者中心</view>
+      </view>
     </view>
 </template>
 
