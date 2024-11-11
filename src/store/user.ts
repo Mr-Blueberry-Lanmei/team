@@ -1,28 +1,33 @@
 import { defineStore } from "pinia"
 import { ref } from "vue"
-import { loginStatusApi, userDetailApi } from "@/servers/servers"
+import { loginStatusApi, userDetailApi, getAccountApi} from "@/servers/servers"
 
 export const useUserStore = defineStore('user', () => {
-  const profile = ref(null)
-  const account = ref(null)
+  const profile = ref<any>(null)
+  const account = ref<any>({})
+  const cookie = uni.getStorageSync('curCookie')
+
+  
+
+  const getUserDetail = async () => {
+    const res = await userDetailApi({id: account.value.id})
+    profile.value = {
+      ...res.data.profile,
+      level: res.data.level,
+      listenSongs: res.data.listenSongs,
+      createDays: res.data.createDays,
+    }
+    
+  }
 
 
   const getAccount = async () => {
-    const res = await loginStatusApi()
+    const res = await getAccountApi({cookie: cookie})
     account.value = res.data.account
-    console.log(account.value)
+    profile.value = res.data.profile
+    console.log(res.data)
     if (res.data.account) {
-      getuserDetail()
-    }
-  }
-
-  const getuserDetail = async () => {
-    const res = await userDetailApi(account.value.id)
-    profile.value = {
-      ...res.profile,
-      level: res.level,
-      listenSongs: res.listenSongs,
-      createDays: res.createDays
+      // getUserDetail()
     }
   }
 
@@ -31,6 +36,6 @@ export const useUserStore = defineStore('user', () => {
     profile,
     account,
     getAccount,
-    getuserDetail
+    getUserDetail
   }
 })

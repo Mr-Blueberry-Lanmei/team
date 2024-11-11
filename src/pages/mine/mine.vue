@@ -2,27 +2,27 @@
   <view class="cbl"></view>
   <navigator url="/pages/search/search" class="ser"></navigator>
   <view class="more"></view>
-  <view v-if="false">
+  <view v-if="!user.profile">
     <navigator url="/pages/login/login">
       <button>去登录</button>
     </navigator>
   </view>
   <view v-else>
-    <view class="header">
-      <image class="avater" src="../../static/wangyiyun.png"></image>
-      <view class="nickname">Lanmei</view>
+    <view class="header" :style="{ backgroundImage: `url(${user.profile?.backgroundUrl})` }">
+      <image class="avater" :src="user.profile?.avatarUrl"></image>
+      <view class="nickname">{{user.profile?.nickname}}</view>
       <view class="test">
         <view class="test-tag">
-          <text class="bold">15</text>关注
+          <text class="bold">{{user.profile.followeds || 15}}</text>关注
         </view>
         <view class="test-tag">
-          <text class="bold">16</text>粉丝
+          <text class="bold">{{user.profile.follows || 16}}</text>粉丝
         </view>
         <view class="test-tag">
-          <text class="bold">Lv.9</text>等级
+          <text class="bold">Lv.{{user.profile.level || 9}}</text>等级
         </view>
         <view class="test-tag">
-          <text class="bold">6173时</text>听歌
+          <text class="bold">{{user.profile.listenSongs || 6173}}时</text>听歌
         </view>
       </view>
       <view class="tab">
@@ -40,37 +40,28 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watchEffect } from "vue" 
+import { ref } from "vue" 
 import { useUserStore } from "@/store/user"
-import { userPlaylistApi } from "@/servers/servers"
 import Like from '../../components/Like.vue'
 import Blog from '../../components/Blog.vue'
 import DynamicState from '../../components/DynamicState.vue'
-
-
 const curIndex = ref(0)
 const user = useUserStore()
-const playlist = ref([])
-const tabs = ['音乐', '博客', '动态']
 
-watchEffect(async () => {
-  if (user.account?.id) {
-    const res = await userPlaylistApi(user.account.id)
-    playlist.value = res.data.data.playlist
-  }
-})
+user.getAccount()
 
-// const goList = id => {
-  
-// }
 
+console.log(user.profile);
+
+// const playlist = ref([])
+const tabs = ['音乐', '播客', '动态']
 
 </script>
 
 <style lang="scss" scoped>
 .header {
   height: 450rpx;
-  background-image: url(../../static/wangyiyun.png);
+  // background-image: url(../../static/wangyiyun.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

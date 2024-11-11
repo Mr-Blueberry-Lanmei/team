@@ -15,12 +15,12 @@ export interface responseItem {
   playlist?: playlist;
   banners:bannersitem[];
   songs: songsitem[];
+  events?:AnyObject;
   result: {
     hots: hostitem[]; 
     songs:songsitem[];
-  }
-  events?:AnyObject;
-  cookie: string;
+  },
+  cookie: string
 }
 
 export interface songsitem {
@@ -58,7 +58,8 @@ interface dataitem {
   id: number;
   url: string;
   key: string;
-  limit: number
+  limit: number;
+  cookie: any
 }
 export interface playlist {
   name: string;
